@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+if [ -f $XDG_CONFIG_HOME/sxhkd/$CFG_WM ]
+then
+	export SXHKD_FILE="$XDG_CONFIG_HOME/sxhkd/merge"
+	cat $XDG_CONFIG_HOME/sxhkd/$CFG_WM $XDG_CONFIG_HOME/sxhkd/sxhkdrc > $SXHKD_FILE
+else
+	export SXHKD_FILE="$XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+fi
+
+if pgrep -x "sxhkd" > /dev/null
+then
+	kill -USR1 $(pgrep -x "sxhkd")
+else
+	sxhkd -c $SXHKD_FILE &
+fi

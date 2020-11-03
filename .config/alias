@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+# General alias...
+alias pacs="pacman -Ss" \
+	kiff="kitty +kitten diff" \
+	ss="sudo systemctl" \
+	mkdir="mkdir -pv" \
+	srn="sudo reboot" \
+	sdn="sudo shutdown -h now" \
+	xc="xclip -sel clip" \
+	xp="xclip -sel clip -o" \
+	ls="ls -B --color=auto --group-directories-first" \
+	ll="ls -hl --color=auto --group-directories-first" \
+  la="\ls -A --color=auto --group-directories-first" \
+	lla="la -hl" \
+	lsa="la" \
+	lsap="la -hl" \
+	lsp="ll" \
+	lspa="lsap" \
+	grep="grep --color=auto" \
+	ytdl="youtube-dl" \
+	ytdlba="youtube-dl -f 'bestaudio[ext=m4a]' -o '%(title)s.%(ext)s'" \
+	gs="git status" \
+	gitdf="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" \
+	cat="expand -t 2" \
+	icat="kitty icat" \
+	mysql="mysql -p" \
+  hc="herbstclient" \
+

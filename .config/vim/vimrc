@@ -1,0 +1,63 @@
+set nocompatible
+" Setup custom locations
+let rtp=&runtimepath
+set runtimepath=~/.config/vim
+let &runtimepath.=','.rtp.',~/.config/vim/after'
+set viminfo+=n~/.cache/vim/viminfo
+set backupdir=$HOME/.cache/vim/backup | call mkdir(&backupdir, 'p', 0700)
+set directory=$HOME/.cache/vim/swap   | call mkdir(&directory, 'p', 0700)
+set viewdir=$HOME/.cache/vim/view     | call mkdir(&viewdir, 'p', 0700)
+set undodir=$HOME/.cache/vim/undo     | call mkdir(&undodir, 'p', 0700)
+
+" Pluggin manager
+if empty(glob('~/.config/vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
+	 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin('~/.config/vim/plugged')
+	Plug 'junegunn/vim-easy-align'
+	Plug 'junegunn/goyo.vim'
+	Plug 'PotatoesMaster/i3-vim-syntax'
+	Plug 'ajh17/VimCompletesMe'
+	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-fugitive'
+	Plug 'tommcdo/vim-fubitive'
+call plug#end()
+
+set wildmode=longest,list,full
+syntax on
+set encoding=utf-8
+set number relativenumber
+augroup numbertoggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+augroup END
+
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+set rtp+=/usr/share/powerline/bindings/vim/
+set laststatus=2
+set t_Co=256
+set splitbelow splitright
+
+set hlsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+" Rebind split movement from (CTRL+W [hjkl]) to (CTRL+[hjkl])
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set autoindent
+set smartindent
+filetype on
+filetype plugin on
+filetype indent on
+autocmd FileType php setlocal autoindent
+

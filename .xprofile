@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+[ -z $CFG_WM ] && export CFG_WM=$(wmctrl -m | grep Name | sed "s/Name: //g")
+xsetroot -cursor_name left_ptr
+
+numlockx &
+#xcompmgr &
+#xcompmgr -c -C -I-.015 -O-.03 -D6 -t-1 -l-3 -r4.2 -o.5 &
+unclutter --timeout 10 --ignore-scrolling &
+xss-lock -l -- betterlockscreen -u ~/Pictures/Wallpapers/Dark_Abstract_Ranbow.jpg -l dimblur &
+
+xmodmap -e 'keycode 135 = Super_R' &
+[ -f $XDG_CONFIG_HOME/kbmap ] && xmodmap $XDG_CONFIG_HOME/kbmap &
+[ $CFG_WM_SXHKD = true ] && sxhkd_mergeconfig &
+
+case "$CFG_WM_BAR" in
+  poly|polybar)
+    polybar_launcher &
+  ;;
+#  dzen|dzen2)
+#    dzen 0 &
+#    dzen 1 &
+#  ;;
+esac
+
+
+[ -f ~/.fehbg ] && source ~/.fehbg
+[ -f $XDG_CONFIG_HOME/wacom/config ] && source $XDG_CONFIG_HOME/wacom/config

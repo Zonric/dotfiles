@@ -1,0 +1,135 @@
+#!/usr/bin/env bash
+
+##----------------------------------------##
+##-- Settings ----------------------------##
+##----------------------------------------##
+hc keyunbind --all
+hc mouseunbind --all
+
+# if you have a super key you will be much happier with Mod set to Mod4
+#Mod=Mod1    # Use alt as the main modifier
+Mod=Mod4   # Use the super key as the main modifier
+
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+
+##----------------------------------------##
+##-- Auto Spawn --------------------------##
+##----------------------------------------##
+
+##----------------------------------------##
+##-- Spawning ----------------------------##
+##----------------------------------------##
+hc keybind $Mod-Return spawn "${TERMINAL:-kitty}" # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-w spawn "${BROWSER:-firefox}"
+hc keybind $Mod-r spawn rofi -show run
+#-- Split
+hc keybind $Mod-o       split   right   0.5
+hc keybind $Mod-u       split   bottom  0.5
+
+##----------------------------------------##
+##-- Focus -------------------------------##
+##----------------------------------------##
+hc keybind $Mod-Left  focus left
+hc keybind $Mod-Down  focus down
+hc keybind $Mod-Up    focus up
+hc keybind $Mod-Right focus right
+hc keybind $Mod-h     focus left
+hc keybind $Mod-j     focus down
+hc keybind $Mod-k     focus up
+hc keybind $Mod-l     focus right
+
+hc keybind $Mod-BackSpace   cycle_monitor
+hc keybind $Mod-Tab         cycle_all +1
+hc keybind $Mod-Shift-Tab   cycle_all -1
+hc keybind $Mod-c cycle
+hc keybind $Mod-i jumpto urgent
+
+# cycle through tags
+hc keybind $Mod-bracketleft   use_index -1 --skip-visible
+hc keybind $Mod-bracketright  use_index +1 --skip-visible
+hc keybind $Mod-comma  focus_monitor -1
+hc keybind $Mod-period focus_monitor +1
+
+# tags
+tag_names=( {1..10} )
+tag_keys=( "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" )
+
+hc rename default "${tag_names[0]}" || true
+for i in "${!tag_names[@]}" ; do
+    hc add "${tag_names[$i]}"
+    key="${tag_keys[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$Mod-$key" chain , silent substitute M tags."$i".my_monitor \
+          focus_monitor M , use_index "$i"
+        hc keybind "$Mod-Shift-$key" move_index "$i"
+    fi
+done
+##----------------------------------------##
+##-- Movement ----------------------------##
+##----------------------------------------##
+hc keybind $Mod-Shift-Left    shift left
+hc keybind $Mod-Shift-Down    shift down
+hc keybind $Mod-Shift-Up      shift up
+hc keybind $Mod-Shift-Right   shift right
+hc keybind $Mod-Shift-h       shift left
+hc keybind $Mod-Shift-j       shift down
+hc keybind $Mod-Shift-k       shift up
+hc keybind $Mod-Shift-l       shift right
+hc keybind $Mod-Shift-comma   shift_to_monitor -1
+hc keybind $Mod-Shift-period  shift_to_monitor +1
+
+##----------------------------------------##
+##-- Resize ------------------------------##
+##----------------------------------------##
+resizestep=0.02
+hc keybind $Mod-Alt-h       resize left +$resizestep
+hc keybind $Mod-Alt-j       resize down +$resizestep
+hc keybind $Mod-Alt-k       resize up +$resizestep
+hc keybind $Mod-Alt-l       resize right +$resizestep
+hc keybind $Mod-Alt-Left    resize left +$resizestep
+hc keybind $Mod-Alt-Down    resize down +$resizestep
+hc keybind $Mod-Alt-Up      resize up +$resizestep
+hc keybind $Mod-Alt-Right   resize right +$resizestep
+
+##----------------------------------------##
+##-- Display Modes -----------------------##
+##----------------------------------------##
+#hc keybind $Mod-r remove
+hc keybind $Mod-s floating toggle
+hc keybind $Mod-f set_attr clients.focus.floating toggle
+hc keybind $Mod-p pseudotile toggle
+hc keybind $Mod-Shift-f fullscreen toggle
+# The following cycles through the available layouts within a frame, but skips
+# layouts, if the layout change wouldn't affect the actual window positions.
+# I.e. if there are two windows within a frame, the grid layout is skipped.
+hc keybind $Mod-space cycle_layout +1
+hc keybind $Mod-Shift-space cycle_layout -1
+hc keybind $Mod-Control-space split explode
+
+##----------------------------------------##
+##-- Audio Controls ----------------------##
+##----------------------------------------##
+hc keybind XF86AudioMute spawn pamixer -t
+hc keybind XF86AudioRaiseVolume spawn pamixer -i 5
+hc keybind XF86AudioLowerVolume spawn pamixer -d 5
+
+##----------------------------------------##
+##-- Reload/Restart/Kill/Exit ------------##
+##----------------------------------------##
+hc keybind $Mod-q close_and_remove
+hc keybind $Mod-Shift-q close
+hc keybind $Mod-Shift-r reload
+
+##----------------------------------------##
+##-- Scratchpad --------------------------##
+##----------------------------------------##
+
+##----------------------------------------##
+##-- Specal/For_Window -------------------##
+##----------------------------------------##
+
+##----------------------------------------##
+##-- EOF ---------------------------------##
+##----------------------------------------##

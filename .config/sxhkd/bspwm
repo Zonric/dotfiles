@@ -1,0 +1,106 @@
+##----------------------------------------##
+##-- Spawner -----------------------------##
+##----------------------------------------##
+super + semicolon
+  rofi_webmarks
+super + c
+  rofi_editconfig
+super + f
+  bspc rule -a kitty -o state=floating rectangle=1720x880+100+100 sticky=on && kitty --name term_fm -e ranger
+##-- Receptacle --------------------------##
+super + n ; r
+  bspc node -i
+super + n ; i
+  bspwm_smart_presel
+super + n ; q
+  bspc node 'any.leaf.!window.local' -k
+##-- Preselector -------------------------##
+super + s ; {h,j,k,l}
+  bspc node -p {west,south,north,east}
+super + s ; {1-9}
+  bspc node -o 0.{9,8,7,6,5,4,3,2,1}
+super + s ; Escape
+  bspc node -p cancel
+##----------------------------------------##
+
+##----------------------------------------##
+##-- Focus -------------------------------##
+##----------------------------------------##
+super + {0-9}
+	bspc desktop -f {0-9}
+#super + KP_{0-9}
+super + KP_{Insert,End,Down,Next,Left,Begin,Right,Home,Up,Prior}
+  bspc desktop -f {0,1,2,3,4,5,6,7,8,9}
+super + alt + KP_Insert
+  bspc desktop -f 2; bspc desktop -f 1
+super + alt + KP_End
+  bspc desktop -f 0; bspc desktop -f 3
+super + {comma, period}
+  bspc monitor -f {prev, next}
+super + ctrl + {comma, period}
+  bspc node -f {prev.local, next.local}
+super + {bracketleft, bracketright}
+	bspc desktop -f {prev, next}
+super + {h, j, k, l}
+	bspc node -f {west, south, north, east}
+super + {Left, Down, Up, Right}
+  bspc node -f {west, south, north, east}
+
+##----------------------------------------##
+##-- Movement ----------------------------##
+##----------------------------------------##
+super + shift + {0-9}
+	bspc node -d {0-9}
+#super + shift + KP_{0-9}
+super + KP_{0-9}
+  bspc node -d {0-9}
+super + shift + {comma, period}
+	bspc node -m {west, east} --follow
+super + shift + {h, j, k, l}
+	bspc node -n {west, south, north, east} --follow
+super + shift + {bracketleft, bracketright}
+	bspc node -d {prev, next} --follow
+super + shift + {left, down, up, right}
+	bspc node -n {west, south, north, east} --follow
+super + shift + Return
+	bspc node -s biggest.local
+super + space
+  bspc node -s biggest.local --follow
+
+##----------------------------------------##
+##-- Resize ------------------------------##
+##----------------------------------------##
+super + alt + {h, j, k, l}
+	bspc node -z {left -20 0, bottom 0 20, top 0 -20, right 20 0}
+super + alt + shift + {h, j, k, l}
+	bspc node -z {left 20 0, bottom 0 -20, top 0 20, right -20 0}
+
+##----------------------------------------##
+##-- Display Modes -----------------------##
+##----------------------------------------##
+super + shift + b
+	bspc config top_padding {0, 25}; polybar-msg cmd toggle
+super + shift + {c,f,t,p}
+  bspwm_smart_state {floating,fullscreen,tiled,pseudo_tiled}
+
+##----------------------------------------##
+##-- Reload/Restart/Kill/Exit ------------##
+##----------------------------------------##
+super + F1
+	bspc wm -r; sxhkd_mergeconfig; polybar_launcher
+super + {q, shift + q}
+	bspc node -{c, k}
+
+##----------------------------------------##
+##-- Scratchpad --------------------------##
+##----------------------------------------##
+#super + grave
+#id=$(cat /tmp/scratchid); bspc node $id --flag hidden;bspc node -f $id
+
+##----------------------------------------##
+##-- Special/For_Window -------------------##
+##----------------------------------------##
+
+##----------------------------------------##
+##-- EOF/Merge Start ---------------------##
+##----------------------------------------##

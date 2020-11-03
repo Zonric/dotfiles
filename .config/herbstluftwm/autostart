@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+hc() {
+    herbstclient "$@"
+}
+
+hc emit_hook reload
+
+# Bindings
+source ~/.config/herbstluftwm/bindings
+
+#--- Frames / Windows / Themes ---#
+#- Settings -#
+hc set default_frame_layout 1
+hc set_layout horizontal
+hc set always_show_frame on
+hc set frame_bg_transparent on
+hc set smart_window_surroundings off
+hc set smart_frame_surroundings on
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+#-- FRAMES --#
+#- Frame Gaps/Padding/Borders -#
+hc set frame_gap 0
+hc set frame_padding 0
+hc set frame_border_width 0
+#- Frame Colors -#
+hc set frame_border_active_color    '#000000'
+hc set frame_border_normal_color    '#000000'
+hc set frame_bg_normal_color        '#000000'
+hc set frame_bg_active_color        '#000000'
+
+#-- WINDOWS --#
+#- Window Gaps/Padding/Borders -#
+hc set window_gap 10
+hc attr theme.border_width 2
+hc attr theme.inner_width 0
+hc attr theme.floating.border_width 2
+hc attr theme.floating.outer_width 0
+#- Window Colors -#
+hc attr theme.active.color          '#FFCB9A'
+hc attr theme.normal.color          '#116466'
+hc attr theme.active.inner_color    '#000000'
+hc attr theme.active.outer_color    '#000000'
+hc attr theme.background_color      '#000000'
+hc attr theme.urgent.color          '#000000'
+hc attr theme.inner_color           '#000000'
+hc attr theme.floating.outer_color  '#000000'
+#----------------------------------#
+#- Other widths -#
+hc set frame_transparent_width 0
+hc set mouse_recenter_gap 0
+
+# rules
+source ~/.config/herbstluftwm/rules
+
+hc set tree_style '╾│ ├└╼─┐'
+
+# unlock, just to be sure
+hc unlock
+
+hc detect_monitors
+for monitor in $(hc list_monitors | cut -d':' -f1); do
+  hc pad $monitor 25
+done
+
+#lock_tag_to_monitor() {
+#  herbstclient chain , new_attr string tags.by-name."$1".my_monitor \
+#    , set_attr tags.by-name."$1".my_monitor "$2"
+#}
+
+#lock_tag_to_monitor 1 1
+#lock_tag_to_monitor 2 0
+#lock_tag_to_monitor 10 1
+
+polybar_launcher &
+

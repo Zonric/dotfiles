@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+killall -q polybar
+
+while pgrep -u $UID -x polybar >/dev/null; do
+  sleep 1; done
+
+polybar primary -r 2>/dev/null &
+polybar secondary -r 2>/dev/null &
