@@ -20,9 +20,9 @@ alias pacs="pacman -Ss" \
 	ytdl="youtube-dl" \
 	ytdlba="youtube-dl -f 'bestaudio[ext=m4a]' -o '%(title)s.%(ext)s'" \
 	gs="git status" \
-	gitdf="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" \
+	cfg="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" \
 	cat="expand -t 2" \
 	icat="kitty icat" \
 	mysql="mysql -p" \
   hc="herbstclient" \
-
+  tmux="tmux -f ~/.config/tmux/config" \

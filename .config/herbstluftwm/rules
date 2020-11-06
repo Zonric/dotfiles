@@ -18,4 +18,5 @@ hc load 10 '
 '
 hc rule class="Steam" tag=10 index=00 pseudotile=off
 hc rule class="discord" tag=9 index=00 pseudotile=off
+hc rule class="slack" tag=9
 

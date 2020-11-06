@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 if [ -f $XDG_CONFIG_HOME/sxhkd/$CFG_WM ]
 then

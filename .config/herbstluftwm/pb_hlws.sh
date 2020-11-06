@@ -6,7 +6,7 @@
 #  #3C6334  #61892F  #86C232
 #  #FFCB9A  #D9B08C  #F16635
 
-#     歷     <|> 華
+#     歷     <|> 華
 
 monitor=${1:-0}
 tags=( $(herbstclient tag_status $monitor) )
@@ -26,7 +26,10 @@ for i in ${tags[@]} ; do
       icon=" "
       ;;
     '5')
-      icon="歷 "
+      icon="歷"
+      ;;
+    '7')
+      icon=" "
       ;;
     '8')
       icon=" "
