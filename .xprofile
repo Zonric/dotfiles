@@ -4,8 +4,8 @@
 xsetroot -cursor_name left_ptr
 
 numlockx &
-#xcompmgr &
-xcompmgr -c -C -I-.015 -O-.03 -D6 -t-1 -l-3 -r4.2 -o.5 &
+#xcompmgr -c -C -I-.015 -O-.03 -D6 -t-1 -l-3 -r4.2 -o.5 &
+picom &
 unclutter --timeout 10 --ignore-scrolling &
 xss-lock -l -- betterlockscreen -u ~/Pictures/Wallpapers/Dark_Abstract_Ranbow.jpg -l dimblur &
 
