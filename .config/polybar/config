@@ -116,7 +116,8 @@ module-margin-right = 2
 
 font-0 = "FiraCode Nerd Font:pixelsize=10;0"
 
-modules-left    = hlws1 bspwm i3
+#modules-left    = hlws1 bspwm i3
+modules-left = i3
 modules-center  =
 modules-right   = pulseaudio eth wlan temperature date  powermenu
 
@@ -211,7 +212,8 @@ module-margin-right = 2
 
 font-0 = "FiraCode Nerd Font:pixelsize=10;0"
 
-modules-left    = hlws0 bspwm i3
+#modules-left    = hlws0 bspwm i3
+modules-left = i3
 modules-center  = filesystem
 modules-right   = pulseaudio date  powermenu
 

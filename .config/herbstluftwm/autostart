@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 hc() {
     herbstclient "$@"
@@ -74,4 +74,3 @@ done
 #lock_tag_to_monitor 10 1
 
 polybar_launcher &
-
