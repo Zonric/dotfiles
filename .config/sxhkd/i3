@@ -1,0 +1,2 @@
+super + F1
+  exec sxhkd_mergeconfig;kill -SIGUSR1 $(pgrep -x "sxhkd");i3-msg 'reload;restart'
