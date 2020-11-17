@@ -110,3 +110,22 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+HISTFILE="$HOME/.cache/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt APPEND_HISTORY
+setopt BANG_HIST
+setopt EXTENDED_HISTORY
+setopt HIST_ALLOW_CLOBBER
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_NO_STORE
+setopt HIST_REDUCE_BLANKS
+setopt INC_APPEND_HISTORY
+unsetopt HIST_VERIFY
+
+# Fix xkb_compose table locale error.
+export LC_ALL=en_US.UTF-8
+
