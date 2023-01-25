@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+hc() {
+    herbstclient "$@"
+}
+
+hc emit_hook reload
+xsetroot -solid '#5A8E3A'
+
+#----------#
+# Bindings #
+#----------#
+source ~/.config/herbstluftwm/bindings
+
+#-------#
+# Theme #
+#-------#
+source ~/.config/herbstluftwm/themes/active
+
+#-------#
+# Rules #
+#-------#
+source ~/.config/herbstluftwm/rules
+
+#-----------------#
+# Monitor/&/Panel #
+#-----------------#
+hc detect_monitors
+for monitor in $(hc list_monitors | cut -d':' -f1); do
+  hc pad $monitor 25
+done
+polybar_launcher &

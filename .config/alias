@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# General alias...
+alias pacs="pacman -Ss" \
+  kiff="kitty +kitten diff" \
+  mkdir="mkdir -v" \
+  ls="ls --color=auto --group-directories-first" \
+  la="ls -A" \
+  ll="ls -lh" \
+  lla="ls -lAh" \
+  grep="grep --color=auto" \
+  icat="kitty icat" \
+  cfg="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" \
+  pacman="pacman --color=auto" \
+  vim="nvim" \

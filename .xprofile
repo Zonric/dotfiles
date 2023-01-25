@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+xsetroot -cursor_name left-ptr
+
+numlockx &
+picom --config $XDG_CONFIG_HOME/picom/picom.conf &
+unclutter --timeout 10 --ignore-scrolling &
+feh --no-xinerama --recursive --bg-fill --randomize ~/Pictures/Wallpapers/ &
+
+xmodmap -e 'keycode 135 = Super_R' &
+
+export WMNAME="wmctrl -m | awk -F': ' 'NR==1 {print \$2}'"
+case $WMNAME in
+  herbstluftwm)
+    polybar_launcher &
+    ;;
+esac
+
+[ -f $XDG_CONFIG_HOME/xorg/monitorsetup.sh ] && source $XDG_CONFIG_HOME/xorg/monitorsetup.sh
+[ -f $XDG_CONFIG_HOME/wacom/config ] && source $XDG_CONFIG_HOME/wacom/config
+

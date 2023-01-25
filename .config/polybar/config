@@ -1,0 +1,595 @@
+;==========================================================
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;   #A4B3B6
+;   #D1E8E2
+;   #88BDBC
+;   #65CCB8
+;   #3AAFA9
+;   #116466
+;   #254E58
+;   #2C3531
+;   #112D32
+;   #3C6334
+;   #61892F
+;   #86C232
+;   #FFCB9A
+;   #D9B08C
+;
+;==========================================================
+
+[colors]
+background = #000
+background_alt = #44475A
+foreground = #FFFFFF
+foreground_alt = #FF0000
+focused = #FF00FF
+inactive = #00FFFF
+primary = #6272A4
+secondary = #E60053
+alert = #FF5555
+good = #B2FF2B
+degraded = #FFD00D
+bad = #FF000A
+border = #00FA48
+
+[icons]
+default     = ""
+vol_high    = ""
+vol_medium  = "墳"
+vol_low     = ""
+vol_muted   = "ﱝ"
+disk        = ""
+cpu         = ""
+mem         = ""
+net         = ""
+date        = ""
+time        = ""
+media_play  = "契"
+media_pause = ""
+media_stop  = "栗"
+media_prev  = "玲"
+media_next  = "怜"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Primary bar             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[bar/primary]
+width = 100%
+height = 25
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+bottom = false
+enable-ipc = true
+monitor = ${env:MONITOR:DisplayPort-0}
+monitor-strict = false
+monitor-exact = true
+override-redirect = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 1
+line-color = #F00
+border-size = 0
+border-color = ${colors.border}
+padding-left  = 2
+padding-right = 2
+module-margin-left  = 1
+module-margin-right = 1
+font-0 = "FiraCode Nerd Font Mono:pixelsize=12;0"
+modules-left    = hlws0
+modules-center  = 
+modules-right   = pulseaudio eth wlan temperature date
+spacing = 0
+dim-value = 1.0
+wm-name =
+locale = en_US.UTF-8
+wm-restack = i3
+dpi-x = 96
+dpi-y = 96
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Left Monitor Bar        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[bar/mon_left]
+enable-ipc = true
+monitor = ${env:MONITOR:DisplayPort-1}
+monitor-strict = false
+monitor-exact = true
+override-redirect = true
+bottom = false
+fixed-center = true
+width   = 100%
+height  = 25
+offset-x = 0
+offset-y = 0
+background = ${colors.background}
+foreground = ${colors.foreground}
+radius = 0.0
+line-size = 1
+line-color = #F00
+border-size = 0
+border-color = ${colors.border}
+padding-left  = 0
+padding-right =
+module-margin-left  = 2
+module-margin-right = 2
+font-0 = "FiraCode Nerd Font Mono:pixelsize=12;0"
+modules-left    = hlws1
+modules-center  = 
+modules-right   = pulseaudio date space
+separator =
+spacing = 0
+dim-value = 1.0
+wm-name =
+locale = en_US.UTF-8
+wm-restack = bspwm
+dpi-x = 96
+dpi-y = 96
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;         Right Monitor Bar          ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[bar/mon_right]
+enable-ipc = true
+monitor = ${env:MONITOR:DisplayPort-2}
+monitor-strict = false
+monitor-exact = true
+override-redirect = true
+bottom = false
+fixed-center = true
+width   = 100%
+height  = 25
+offset-x = 0
+offset-y = 0
+background = ${colors.background}
+foreground = ${colors.foreground}
+radius = 0.0
+line-size = 1
+line-color = #F00
+border-size = 0
+border-color = ${colors.border}
+padding-left  = 0
+padding-right =
+module-margin-left  = 2
+module-margin-right = 2
+font-0 = "FiraCode Nerd Font Mono:pixelsize=12;0"
+modules-left    = hlws2
+modules-center  = 
+modules-right   = pulseaudio date space 
+separator =
+spacing = 0
+dim-value = 1.0
+wm-name =
+locale = en_US.UTF-8
+wm-restack = bspwm
+dpi-x = 96
+dpi-y = 96
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Modules                 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;          AppLauncher               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/launcher]
+type=custom/text
+content = ""
+; content-font=2
+content-forground=#1793D1
+;content-foreground=${colors.forground}
+content-padding=0
+click-left="bash ~/.config/polybar/scripts/launcher"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            xwindow                 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            xkeyboard               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            filesystem              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+mount-1 = /media/backups
+mount-2 = /media/storage
+label-mounted = %mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint%
+label-unmounted-foreground = ${colors.degraded}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Herbst                  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/hlws0]
+type = custom/script
+exec = ~/.config/herbstluftwm/pb_hlws.sh 0
+scroll-down = exec herbstclient use_index +1
+scroll-up = exec herbstclient use_index -1
+interval = 0.5
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-padding = 2
+
+[module/hlws1]
+type = custom/script
+exec = ~/.config/herbstluftwm/pb_hlws.sh 1
+scroll-down = exec herbstclient use_index +1
+scroll-up = exec herbstclient use_index -1
+interval = 0.5
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-padding = 2
+
+[module/hlws2]
+type = custom/script
+exec = ~/.config/herbstluftwm/pb_hlws.sh 2
+scroll-down = exec herbstclient use_index +1
+scroll-up = exec herbstclient use_index -1
+interval = 0.5
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-padding = 2
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            MPD                     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev> <icon-stop> <label-song> <toggle> <icon-next>
+;format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-play = ${icons.media_play}
+icon-pause = ${icons.media_pause}
+icon-stop = ${icons.media_stop}
+icon-prev = ${icons.media_prev}
+icon-next = ${icons.media_next}
+
+label-song-maxlen = 45
+label-song-ellipsis = true
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            xbacklight              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;[module/xbacklight]
+;type = internal/xbacklight
+;
+;format = <label> <bar>
+;label = BL
+;
+;bar-width = 10
+;bar-indicator = |
+;bar-indicator-foreground = #FFF
+;bar-indicator-font = 2
+;bar-fill = ─
+;bar-fill-font = 2
+;bar-fill-foreground = #9F78E1
+;bar-empty = ─
+;bar-empty-font = 2
+;bar-empty-foreground = ${colors.foreground_alt}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Backlight-acpi          ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;[module/backlight-acpi]
+;inherit = module/xbacklight
+;type = internal/backlight
+;card = intel_backlight
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            CPU                     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = ${icons.cpu}
+format-prefix-foreground = ${colors.foreground_alt}
+format-underline = #F90000
+label = %percentage:2%%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Memory                  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = ${icons.mem}
+format-prefix-foreground = ${colors.foreground_alt}
+format-underline = #4BFFDC
+label = %percentage_used%%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Network                 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            wlan/WIFI               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/wlan]
+type = internal/network
+interface = wifi_id
+interval = 3.0
+
+ramp-signal-0 = 0
+ramp-signal-1 = 1
+ramp-signal-2 = 2
+ramp-signal-3 = 3
+ramp-signal-4 = 4
+ramp-signal-foreground = ${colors.foreground_alt}
+
+label-connected = %essid%
+label-connected-foreground = ${colors.foreground}
+
+label-disconnected = "%ifname%  "
+label-disconnected-foreground = ${colors.foreground_alt}
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-prefix = "直"
+format-connected-prefix-foreground = ${colors.good}
+format-connected-underline = #9F78E1
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = "ﲁ "
+format-disconnected-prefix-foreground = ${colors.bad}
+format-disconnected-underline = ${self.format-connected-underline}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            eth/Wired               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/eth]
+type = internal/network
+interface = enp3s0
+interval = 3.0
+
+label-connected = %local_ip%
+label-connected-foreground = ${colors.foreground}
+
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.bad}
+
+format-connected = <label-connected>
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.good}
+format-connected-underline = ${colors.good}
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = " "
+format-disconnected-prefix-foreground = ${colors.bad}
+format-disconnected-underline = ${colors.bad}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Date                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/date]
+type = internal/date
+interval = 5
+
+date = "%a %b %d"
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = ${icons.date}
+format-prefix-foreground = ${colors.foreground}
+format-underline = #0A6CF5
+
+label = %date% %time%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            pulseaudio              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = ${icons.vol_muted}
+label-muted = Muted
+label-muted-foreground = ${colors.foreground_alt}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.good}
+bar-volume-foreground-1 = ${colors.good}
+bar-volume-foreground-2 = ${colors.good}
+bar-volume-foreground-3 = ${colors.good}
+bar-volume-foreground-4 = ${colors.degraded}
+bar-volume-foreground-5 = ${colors.bad}
+bar-volume-foreground-6 = ${colors.bad}
+bar-volume-gradient = false
+bar-volume-indicator = ${icons.vol_low}
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground_alt}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Alsa                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = ${icons.vol_muted}
+label-muted = Muted
+format-muted-foreground = ${colors.foreground_alt}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.good}
+bar-volume-foreground-1 = ${colors.good}
+bar-volume-foreground-2 = ${colors.good}
+bar-volume-foreground-3 = ${colors.good}
+bar-volume-foreground-4 = ${colors.degraded}
+bar-volume-foreground-5 = ${colors.bad}
+bar-volume-foreground-6 = ${colors.bad}
+bar-volume-gradient = false
+bar-volume-indicator = ${icons.vol_low}
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground_alt}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Battery                 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #FFB52A
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground_alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground_alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground_alt}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.foreground_alt}
+animation-discharging-framerate = 750
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Temperature             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #F50A4D
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground = ${colors.foreground_alt}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            PowerMenu               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground_alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Sep/Spaces              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/sep]
+type = custom/text
+content = |
+
+[module/space]
+type = custom/text
+content = " "
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Settings                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;            Global/WM               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[global/wm]
+margin-top = 10
+margin-bottom = 10
+
+; vim:ft=dosini
