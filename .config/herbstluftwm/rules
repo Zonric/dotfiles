@@ -40,6 +40,7 @@ hc load 10 '
 (clients horizontal:0)
 (clients grid:0))
 '
+hc rule class="Thunar" floating=on floatplacement=center
 hc rule class="Steam" tag=10 index=00 pseudotile=off
 hc rule class="discord" tag=9 index=00 pseudotile=off
 hc rule class="slack" tag=9
