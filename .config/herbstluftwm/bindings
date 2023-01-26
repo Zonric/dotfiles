@@ -54,6 +54,8 @@ hc keybind $Mod-comma  focus_monitor +1
 hc keybind $Mod-period focus_monitor -1
 
 # tags
+hc attr settings.default_frame_layout vertical
+
 tag_names=( {1..10} )
 tag_keys=( "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" )
 
@@ -67,6 +69,9 @@ for i in "${!tag_names[@]}" ; do
         hc keybind "$Mod-Shift-$key" move_index "$i"
     fi
 done
+
+herbstclient foreach T tags.by-name. sprintf ATTR '%c.tiling.root.algorithm' T set_attr ATTR horizontal
+
 ##----------------------------------------##
 ##-- Movement ----------------------------##
 ##----------------------------------------##
