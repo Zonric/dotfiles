@@ -10,10 +10,6 @@ export LESS="-x2R"
 
 umask 002
 
-[ -f "$XDG_CONFIG_HOME/xorg/monitorsetup.sh" ] && source "$XDG_CONFIG_HOME/xorg/monitorsetup.sh"
-
-xmodmap -e 'keycode 135 = Super_R' &
-
 if [ -d "$HOME/.local/bin" ] ; then
 	export PATH="$PATH:$(du $HOME/.local/bin | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 fi
