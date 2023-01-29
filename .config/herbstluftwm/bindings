@@ -116,6 +116,9 @@ hc keybind $Mod-Control-space split explode
 hc keybind XF86AudioMute spawn pamixer -t
 hc keybind XF86AudioRaiseVolume spawn pamixer -i 5
 hc keybind XF86AudioLowerVolume spawn pamixer -d 5
+hc keybind XF86AudioPrev spawn playerctl previous -p spotify,%any
+hc keybind XF86AudioPlay spawn playerctl play-pause -p spotify,%any
+hc keybind XF86AudioNext spawn playerctl next -p spotify,%any
 
 ##----------------------------------------##
 ##-- Reload/Restart/Kill/Exit ------------##

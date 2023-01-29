@@ -11,7 +11,7 @@ update() {
 	done < <(echo "$1")
 }
 
-PLAYER_STATUS=$(playerctl -p spotify status $2 2>/dev/null)
+PLAYER_STATUS=$(playerctl -p spotify status)
 
 if [ "$1" == "--scroll" ]; then
 	echo "$STATUS"
@@ -22,7 +22,7 @@ else
 	elif [ "$PLAYER_STATUS" = "Paused" ]; then
 		update "$BAR_PID" 1
 		playerctl --player=$PLAYER metadata --format "$FORMAT"
-	elif [ "$PLAYER_STATUS" = "No player found." ]; then
+	elif [ "$PLAYER_STATUS" = "No players found" ]; then
 		echo "$PLAYER_STATUS"
 	fi
 fi
