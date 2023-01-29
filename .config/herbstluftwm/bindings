@@ -28,6 +28,8 @@ hc keybind $Mod-r spawn rofi -show run
 #-- Split
 hc keybind $Mod-o       split   right   0.5
 hc keybind $Mod-u       split   bottom  0.5
+#-- Scratchpad
+hc keybind $Mod-grave spawn "scratchpad"
 
 ##----------------------------------------##
 ##-- Focus -------------------------------##
@@ -126,10 +128,6 @@ hc keybind XF86AudioNext spawn playerctl next -p spotify,%any
 hc keybind $Mod-q close_and_remove
 hc keybind $Mod-Shift-q close
 hc keybind $Mod-Shift-r reload
-
-##----------------------------------------##
-##-- Scratchpad --------------------------##
-##----------------------------------------##
 
 ##----------------------------------------##
 ##-- Specal/For_Window -------------------##
