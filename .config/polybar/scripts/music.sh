@@ -17,10 +17,10 @@ if [ "$1" == "--scroll" ]; then
 	echo "$STATUS"
 else
 	if [ "$PLAYER_STATUS" = "Playing" ]; then
-		update "$BAR_PID" 2
+		update "$BAR_PID" 1
 		playerctl --player=$PLAYER metadata --format "$FORMAT"
 	elif [ "$PLAYER_STATUS" = "Paused" ]; then
-		update "$BAR_PID" 1
+		update "$BAR_PID" 2
 		playerctl --player=$PLAYER metadata --format "$FORMAT"
 	elif [ "$PLAYER_STATUS" = "No players found" ]; then
 		echo "$PLAYER_STATUS"
