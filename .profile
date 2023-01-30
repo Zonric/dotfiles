@@ -7,6 +7,7 @@ export BROWSER="firefox"
 export FILEMAN="ranger"
 export PAGER="less"
 export LESS="-x2R"
+export GOPATH="~/.go"
 
 umask 002
 
