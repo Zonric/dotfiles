@@ -9,28 +9,15 @@ hc rule floatplacement=center
 #hc rule float_geometry=250x100
 #hc rule focus=off # normally do not focus new clients
 
-#-------#
-# Menus #
-#-------#
-hc rule title~'launch.sh' floating=on floatplacement=center floating_geometry=600x800
-hc rule title~'vsp2' floating=on floatplacement=center floating_geometry=375x1000
-hc rule title~'configs' floating=on floatplacement=center floating_geometry=375x600
-hc rule title~'windows' floating=on floatplacement=center floating_geometry=700x300
-hc rule title~'logout' floating=on floatplacement=center floating_geometry=320x200
-hc rule title~'vmach.sh' floating=on floatplacement=center floating_geometry=375x500
-hc rule title~'themesel.sh' floating=on floatplacement=center floating_geometry=375x200
-
 #------------#
 # Scatchpads #
 #------------#
 hc rule title~'scratchpad' floating=on floatplacement=center floating_geometry=1000x500
-hc rule title~'FM' floating=on floatplacement=center floating_geometry=1000x800
-hc rule class~'qutebrowser' floating=on floatplacement=center floating_geometry=1800x1000
-hc rule title~'Mail' floating=on floatplacement=center floating_geometry=1500x800
-hc rule title~'Music' floating=on floatplacement=center floating_geometry=1200x800
-hc rule title~'Todo' floating=on floatplacement=center floating_geometry=1000x650
+hc rule class="Thunar" floating=on floatplacement=center
 
 #hc rule title~'Hulu | Watch' floating=on
+
+hc rule class="QjackCtl" floating=on
 
 #------------#
 # Games/Apps #
@@ -38,12 +25,12 @@ hc rule title~'Todo' floating=on floatplacement=center floating_geometry=1000x65
 hc load 10 '
 (split horizontal:0.850000:0
 (clients horizontal:0)
-(clients grid:0))
+(clients vertical:0))
 '
-hc rule class="Thunar" floating=on floatplacement=center
-hc rule class="Steam" tag=10 index=00 pseudotile=off
-hc rule class="discord" tag=9 index=00 pseudotile=off
-hc rule class="slack" tag=9
+hc rule class="Steam" tag=10 index=00
+hc rule class="discord" tag=9 index=00
+hc rule class="Spotify" tag=8 index=00
+hc rule class="obs" tag=7 index=00
 hc rule instance="calibre-ebook-viewer" floating=on
 hc rule instance="com.wurmonline.client.launcherfx.WurmMain" fullscreen=on
 #hc rule instance="(Zonric) Wurm Unlimited " fullscreen=on
