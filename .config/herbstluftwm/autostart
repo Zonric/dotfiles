@@ -7,6 +7,12 @@ hc() {
 hc emit_hook reload
 xsetroot -solid '#003333'
 
+#-----------#
+# Autostart #
+#-----------#
+audio &
+jack_mixer &
+
 #----------#
 # Bindings #
 #----------#
@@ -29,4 +35,11 @@ hc detect_monitors
 for monitor in $(hc list_monitors | cut -d':' -f1); do
   hc pad $monitor 25
 done
+
+#-----------#
+# Autostart #
+#-----------#
+pactl load-module module-null-sink sink_name="System Audio"
+pactl load-module module-null-sink sink_name="Discord Audio"
+jack_mixer -c ~/.local/share/jack_mixer/master.xml &
 polybar_launcher &

@@ -24,10 +24,8 @@ hc keybind $Mod-r spawn rofi -show run
 #-- Split
 hc keybind $Mod-o       split   right   0.5
 hc keybind $Mod-u       split   bottom  0.5
-#-- Scratchpad
-hc keybind $Mod-grave spawn "scratchpad"
 
-##----------------------------------------##
+#----------------------------------------##
 ##--- Focus ------------------------------##
 ##----------------------------------------##
 hc keybind $Mod-Left  focus left
@@ -83,7 +81,7 @@ hc keybind $Mod-Shift-t \
     remove_attr tags.focus.my_monitor
 
 lock_tag_to_monitor() {
-    hc chain, new_attr string tags.by-name."$1".my_monitor, set_attr tags.by-name."$1".my_monitor "$2"
+    herbstclient chain , new_attr string tags.by-name."$1".my_monitor , set_attr tags.by-name."$1".my_monitor "$2"
 }
 lock_tag_to_monitor 10 0
 lock_tag_to_monitor 1 0
@@ -92,6 +90,9 @@ lock_tag_to_monitor 7 2
 lock_tag_to_monitor 8 2
 lock_tag_to_monitor 9 2
 hc foreach T tags.by-name. sprintf ATTR '%c.tiling.root.algorithm' T set_attr ATTR horizontal
+#-- Scratchpad
+hc keybind $Mod-grave spawn scratchpad
+hc keybind $Mod-Shift-grave spawn scratchpad audio
 
 ##----------------------------------------##
 ##--- Movement ---------------------------##

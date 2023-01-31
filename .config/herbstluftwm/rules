@@ -34,6 +34,7 @@ hc rule class="obs" tag=7 index=00
 hc rule instance="calibre-ebook-viewer" floating=on
 hc rule instance="com.wurmonline.client.launcherfx.WurmMain" fullscreen=on
 #hc rule instance="(Zonric) Wurm Unlimited " fullscreen=on
+hc rule class="Jack_mixer" tag="audio" #floating=on
 
 #--------------#
 # Common Terms #

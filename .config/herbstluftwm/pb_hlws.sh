@@ -17,6 +17,7 @@ for i in ${tags[@]} ; do
     '9')  icon="󰙯" ;;
     '10') icon="" ;;
     'scratchpad') icon="" ;;
+    'audio') icon="" ;;
     *)    icon="華";;
   esac
   case ${i:0:1} in
