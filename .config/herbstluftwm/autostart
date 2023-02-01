@@ -29,4 +29,12 @@ hc detect_monitors
 for monitor in $(hc list_monitors | cut -d':' -f1); do
   hc pad $monitor 25
 done
+
+#-----------#
+# Autostart #
+#-----------#
+audio &
+pactl load-module module-null-sink sink_name="System Audio"
+pactl load-module module-null-sink sink_name="Discord Audio"
+jack_mixer -c ~/.local/share/jack_mixer/master.xml &
 polybar_launcher &
