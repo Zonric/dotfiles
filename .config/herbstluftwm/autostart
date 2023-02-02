@@ -24,3 +24,8 @@ pactl load-module module-null-sink sink_name="Discord Audio"
 jack_mixer -c ~/.config/jack_mixer/master.xml &
 qpwgraph -m ~/.config/rncbc.org/patchbays/master.qpwgraph &
 polybar_launcher &
+
+discord &
+spotify-launcher &
+obs &
+
