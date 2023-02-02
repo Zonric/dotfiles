@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<jack_mixer geometry="328x502" paned_position="276" visible="True">
-	<input_channel name="Music" type="stereo" direct_output="True" volume="-22.608052" balance="0.000000" wide="True" meter_prefader="False" out_mute="False" volume_midi_cc="11" balance_midi_cc="12" mute_midi_cc="13" solo_midi_cc="14"/>
-	<input_channel name="System Audio" type="stereo" direct_output="True" volume="-16.275104" balance="0.000000" wide="True" meter_prefader="False" out_mute="False" volume_midi_cc="15" balance_midi_cc="16" mute_midi_cc="17" solo_midi_cc="18"/>
-	<input_channel name="Discord Voice" type="mono" direct_output="True" volume="-12.604661" balance="0.000000" wide="True" meter_prefader="False" out_mute="False" volume_midi_cc="19" balance_midi_cc="20" mute_midi_cc="21" solo_midi_cc="22"/>
-	<gui_factory confirm-quit="False" default_meter_scale="K20" default_project_path="" default_slider_scale="linear_30dB" midi_behavior_mode="0" use_custom_widgets="False" vumeter_color="#ccb300" vumeter_color_scheme="default" auto_reset_peak_meters="False" auto_reset_peak_meters_time_seconds="2.0" meter_refresh_period_milliseconds="33"/>
+<jack_mixer geometry="832x472" paned_position="703" visible="True">
+	<input_channel name="Music" type="stereo" direct_output="True" volume="-29.5" balance="0.000000" wide="True" meter_prefader="False" out_mute="False" volume_midi_cc="11" balance_midi_cc="12" mute_midi_cc="13" solo_midi_cc="14"/>
+	<input_channel name="System Audio" type="stereo" direct_output="True" volume="-8.545120" balance="0.000000" wide="True" meter_prefader="False" out_mute="False" volume_midi_cc="15" balance_midi_cc="16" mute_midi_cc="17" solo_midi_cc="18"/>
+	<input_channel name="Discord Voice" type="mono" direct_output="True" volume="1.542929" balance="0.000000" wide="True" meter_prefader="False" out_mute="False" volume_midi_cc="19" balance_midi_cc="20" mute_midi_cc="21" solo_midi_cc="22"/>
+	<gui_factory confirm-quit="False" default_meter_scale="K20" default_project_path="/home/zonric/.local/share/jack_mixer" default_slider_scale="linear_30dB" midi_behavior_mode="0" use_custom_widgets="False" vumeter_color="#ccb300" vumeter_color_scheme="default" auto_reset_peak_meters="True" auto_reset_peak_meters_time_seconds="10.0" meter_refresh_period_milliseconds="33"/>
 </jack_mixer>
