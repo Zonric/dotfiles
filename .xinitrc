@@ -14,6 +14,7 @@ case $session in
   hl|hlwm|herb|herbs|herbstluft|herbstluftwm)
     export CFG_WM=herbstluftwm
     export CFG_WM_CMD=herbstluftwm
+    export CFG_WM_BAR=polybar
     export CFG_WM_SXHKD=false
   ;;
   i3 | i3wm )

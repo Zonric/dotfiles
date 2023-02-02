@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
+hc() {
+    herbstclient "$@"
+}
 
 ##----------------------------------------##
 ##--- Settings ---------------------------##
@@ -10,6 +13,9 @@ hc mouseunbind --all
 #Mod=Mod1    # Use alt as the main modifier
 Mod=Mod4   # Use the super key as the main modifier
 
+##----------------------------------------##
+##--- Mouse Buttons ----------------------##
+##----------------------------------------##
 hc mousebind $Mod-Button1 move
 hc mousebind $Mod-Button2 zoom
 hc mousebind $Mod-Button3 resize
@@ -68,6 +74,12 @@ for i in "${!tag_names[@]}" ; do
     fi
 done
 
+##--- Add scratchpads ---##
+hc add sysadmin
+hc add audio
+hc keybind $Mod-grave spawn scratchpad sysadmin
+hc keybind $Mod-Shift-grave spawn scratchpad audio
+
 ##--- Tag Lock ---##
 hc keybind $Mod-t chain \
     , new_attr string tags.focus.my_monitor \
@@ -79,20 +91,6 @@ hc keybind $Mod-t chain \
 
 hc keybind $Mod-Shift-t \
     remove_attr tags.focus.my_monitor
-
-lock_tag_to_monitor() {
-    herbstclient chain , new_attr string tags.by-name."$1".my_monitor , set_attr tags.by-name."$1".my_monitor "$2"
-}
-lock_tag_to_monitor 10 0
-lock_tag_to_monitor 1 0
-lock_tag_to_monitor 2 1
-lock_tag_to_monitor 7 2
-lock_tag_to_monitor 8 2
-lock_tag_to_monitor 9 2
-hc foreach T tags.by-name. sprintf ATTR '%c.tiling.root.algorithm' T set_attr ATTR horizontal
-#-- Scratchpad
-hc keybind $Mod-grave spawn scratchpad
-hc keybind $Mod-Shift-grave spawn scratchpad audio
 
 ##----------------------------------------##
 ##--- Movement ---------------------------##

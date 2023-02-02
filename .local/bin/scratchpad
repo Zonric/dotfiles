@@ -15,8 +15,16 @@
 tag="${1:-scratchpad}"
 hc() { "${herbstclient_command[@]:-herbstclient}" "$@" ;}
 
-WIDTH_PERC=75
-HEIGHT_PIXELS=750
+if [ $1 == "sysadmin" ]; then
+    WIDTH_PERC=95
+    HEIGHT_PIXELS=375
+elif [ $1 == "audio" ]; then
+    WIDTH_PERC=25
+    HEIGHT_PIXELS=500
+else
+    WIDTH_PERC=100
+    HEIGHT_PIXELS=1200
+fi
 
 termwidth_percent=${WIDTH_PERC:-100}
 mrect=( $(hc monitor_rect -p "" ) )

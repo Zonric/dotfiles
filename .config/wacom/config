@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+xsetwacom set 'Wacom Intuos PT S Pen stylus' MapToOutput DisplayPort-0
+xsetwacom set 'Wacom Intuos PT S Pen eraser' MapToOutput DisplayPort-0
