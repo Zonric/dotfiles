@@ -42,11 +42,11 @@ hc rule class="discord" tag=9
 #-------------#
 # Steam/Games #
 #-------------#
-hc load 10 '
-(split horizontal:0.850000:0
-(clients horizontal:0)
-(clients vertical:0))
-'
+#hc load 10 '
+#(split horizontal:0.850000:0
+#(clients horizontal:0)
+#(clients vertical:0))
+#'
 hc rule class="Steam" tag=10
 #hc rule instance="(Zonric) Wurm Unlimited " fullscreen=on
 hc rule instance="com.wurmonline.client.launcherfx.WurmMain" fullscreen=on

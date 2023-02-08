@@ -1,10 +1,12 @@
 #!/usr/bin/env sh
 
+source ~/.config/herbstluftwm/themes/active_colors
+
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 
 hc set mouse_recenter_gap 0
-hc set focus_crosses_monitor_boundaries false
+hc set focus_crosses_monitor_boundaries true
 hc set swap_monitors_to_get_tag false
 hc set smart_frame_surroundings true
 hc set smart_window_surroundings false
@@ -13,13 +15,13 @@ hc set frame_gap 2
 hc set frame_padding 1
 hc set show_frame_decorations if_empty
 hc set frame_bg_transparent false
-hc set frame_normal_opacity 35
-hc set frame_active_opacity 85
-hc set frame_bg_normal_color '#888'
-hc set frame_bg_active_color '#000'
+hc set frame_normal_opacity 0
+hc set frame_active_opacity 35
+hc set frame_bg_normal_color $WHITE
+hc set frame_bg_active_color $BLACK
 hc set frame_border_width 2
-hc set frame_border_normal_color '#AAFFFF'
-hc set frame_border_active_color '#AA55AA'
+hc set frame_border_normal_color $BORDER
+hc set frame_border_active_color $BORDER_ALT
 
 hc set window_gap 10
 
@@ -27,10 +29,10 @@ hc attr theme.border_width 3
 hc attr theme.tight_decoration false
 hc attr theme.title_when never
 
-hc attr theme.normal.color '#669999'
+hc attr theme.normal.color $NORMAL
 hc attr theme.normal.border_width 3
 
-hc attr theme.active.color '#66FF66'
+hc attr theme.active.color $ACTIVE
 hc attr theme.active.border_width 3
 
 hc attr theme.floating.border_width 6
@@ -38,7 +40,7 @@ hc attr theme.floating.inner_color orange
 hc attr theme.floating.inner_width 3
 
 hc attr theme.urgent.border_width 6
-hc attr theme.urgent.inner_color '#FF00FF'
+hc attr theme.urgent.inner_color $URGENT
 hc attr theme.urgent.inner_width 3
-hc attr theme.urgent.outer_color '#FF0000'
+hc attr theme.urgent.outer_color $URGENT_ALT
 hc attr theme.urgent.outer_width 3

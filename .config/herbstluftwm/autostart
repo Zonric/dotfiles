@@ -9,7 +9,7 @@ xsetroot -solid '#003333'
 
 source ~/.config/herbstluftwm/bindings
 source ~/.config/herbstluftwm/rules
-source ~/.config/herbstluftwm/themes/active
+source ~/.config/herbstluftwm/theme
 
 hc detect_monitors
 for monitor in $(hc list_monitors | cut -d':' -f1); do
@@ -19,13 +19,9 @@ done
 #-----------#
 # Autostart #
 #-----------#
-pactl load-module module-null-sink sink_name="System Audio"
-pactl load-module module-null-sink sink_name="Discord Audio"
-jack_mixer -c ~/.config/jack_mixer/master.xml &
-qpwgraph -m ~/.config/rncbc.org/patchbays/master.qpwgraph &
 polybar_launcher &
 
-discord &
-spotify-launcher &
-obs &
+#discord &
+#spotify-launcher &
+#obs &
 

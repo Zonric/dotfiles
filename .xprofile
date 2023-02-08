@@ -7,6 +7,11 @@ picom --config $XDG_CONFIG_HOME/picom/picom.conf &
 unclutter --timeout 10 --ignore-scrolling &
 feh --no-xinerama --recursive --bg-fill --randomize ~/Pictures/Wallpapers/ &
 
+pactl load-module module-null-sink sink_name="System Audio"
+pactl load-module module-null-sink sink_name="Discord Audio"
+jack_mixer -c ~/.config/jack_mixer/master.xml &
+qpwgraph -m ~/.config/rncbc.org/patchbays/master.qpwgraph &
+
 xmodmap -e 'keycode 135 = Super_R' &
 
 [ -f $XDG_CONFIG_HOME/wacom/config ] && source $XDG_CONFIG_HOME/wacom/config

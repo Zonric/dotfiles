@@ -37,6 +37,10 @@ case $session in
     export CFG_WM=xfce4
     export CFG_WM_CMD=startxfce4
   ;;
+  qtile | qt)
+    export CFG_WM=qtile
+    export CFG_WM_CMD=qtile start
+  ;;
   * )
     export CFG_WM_CMD=$session
   ;;
