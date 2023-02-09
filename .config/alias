@@ -3,7 +3,7 @@
 alias pacs="pacman -Ss" \
   kiff="kitty +kitten diff" \
   mkdir="mkdir -v" \
-  ls="lsd --color=auto --group-directories-first" \
+  ls="ls --color=auto --group-directories-first" \
   la="ls -A" \
   ll="ls -lh" \
   lla="ls -lAh" \
