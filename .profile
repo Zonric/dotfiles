@@ -7,6 +7,8 @@ export FILEMAN=ranger
 export PAGER=less
 export LESS=-x2R
 
+export RANGER_LOAD_DEFAULT_RC=FALSE
+
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
@@ -14,6 +16,8 @@ export ZDOTDIR=$HOME/.config/zsh
 export GOPATH=$HOME/.go
 
 umask 002
+
+numlockx
 
 if [ -d $HOME/.local/bin ] ; then
 	export PATH="$PATH:$(du $HOME/.local/bin | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
