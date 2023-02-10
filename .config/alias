@@ -10,5 +10,6 @@ alias pacs="pacman -Ss" \
   grep="grep --color=auto" \
   icat="kitty icat" \
   cfg="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" \
+  cdiff="cfg diff" \
   pacman="pacman --color=auto" \
   vim="nvim" \
