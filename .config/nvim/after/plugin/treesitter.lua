@@ -1,7 +1,13 @@
 -- [[ Configure Treesitter ]]
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim' },
+  ensure_installed = {
+    'bash', 'c', 'c_sharp', 'cmake', 'cpp', 'css', 'gitcommit', 'gitignore',
+    'glsl', 'go', 'hlsl', 'html', 'htmldjango', 'ini', 'java', 'javascript',
+    'json', 'lua', 'make', 'markdown', 'perl', 'php', 'poe_filter',
+    'python', 'r', 'rasi', 'regex', 'ruby', 'rust', 'scss', 'sql', 'toml', 'typescript',
+    'vim', 'vue', 'wgsl', 'wgsl_bevy', 'yaml', 'yang', 'zig',
+  },
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
@@ -55,6 +61,13 @@ require('nvim-treesitter.configs').setup {
       swap_previous = {
         ['<leader>A'] = '@parameter.inner',
       },
+    },
+  },
+  autotag = {
+    enable = true,
+    filetypes = {
+      "html", "php", "xml", "javascript", "javascriptreact", "typescript", "typescriptreact",
+      "markdown", "glimmer", "jsx", "rescript",
     },
   },
 }
