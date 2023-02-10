@@ -27,6 +27,7 @@ hc keybind $Mod-Return spawn "${TERMINAL:-kitty}" # use your $TERMINAL with xter
 hc keybind $Mod-w spawn "${BROWSER:-firefox}"
 hc keybind $Mod-Shift-w spawn "firefox-developer-edition"
 hc keybind $Mod-r spawn rofi -show run
+hc keybind $Mod-Home spawn feh --no-xintrama --bg-fill --randomize ~/Pictures/Wallpapers/
 #-- Split
 hc keybind $Mod-o       split   right   0.5
 hc keybind $Mod-u       split   bottom  0.5
