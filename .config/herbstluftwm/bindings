@@ -23,11 +23,13 @@ hc mousebind $Mod-Button3 resize
 ##----------------------------------------##
 ##--- Spawning ---------------------------##
 ##----------------------------------------##
-hc keybind $Mod-Return spawn "${TERMINAL:-kitty}" # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-Return spawn "${TERMINAL:-kitty}"
 hc keybind $Mod-w spawn "${BROWSER:-firefox}"
 hc keybind $Mod-Shift-w spawn "firefox-developer-edition"
+hc keybind $Mod-e spawn thunar
+hc keybind $Mod-Shift-e spawn kitty -e ranger ~
 hc keybind $Mod-r spawn rofi -show run
-hc keybind $Mod-Home spawn feh --no-xintrama --bg-fill --randomize ~/Pictures/Wallpapers/
+hc keybind $Mod-Home spawn feh --no-xintrama --bg-fill --randomize --no-recursive ~/Pictures/Wallpapers/
 #-- Split
 hc keybind $Mod-o       split   right   0.5
 hc keybind $Mod-u       split   bottom  0.5
