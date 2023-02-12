@@ -29,12 +29,15 @@ hc keybind $Mod-Shift-w spawn "firefox-developer-edition"
 hc keybind $Mod-e spawn thunar
 hc keybind $Mod-Shift-e spawn kitty -e ranger ~
 hc keybind $Mod-r spawn rofi -show run
-hc keybind $Mod-Home spawn feh --no-xintrama --bg-fill --randomize --no-recursive ~/Pictures/Wallpapers/
+hc keybind $Mod-Home spawn feh --no-xinerama --bg-scale --randomize ~/Pictures/Wallpapers
+hc keybind Print spawn scrot -F ~/Pictures/Screenshots/Fms_%F_%T_'$w'x'$h'.png
+hc keybind Alt-Print spawn scrot -u ~/Pictures/Screenshots/Win_%F_%T_'$w'x'$h'.png
+hc keybind Shift-Print spawn scrot -s -f -F ~/Pictures/Screenshots/Sel_%F_%T_'$w'x'$h'.png
 #-- Split
 hc keybind $Mod-o       split   right   0.5
 hc keybind $Mod-u       split   bottom  0.5
 
-#----------------------------------------##
+##----------------------------------------##
 ##--- Focus ------------------------------##
 ##----------------------------------------##
 hc keybind $Mod-Left  focus left
