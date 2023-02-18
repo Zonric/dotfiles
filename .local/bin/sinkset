@@ -10,31 +10,25 @@ ISSET_MUSIC=false
 for i in $(seq 1 $SCOUNT); do
 	SINK=${SINKS[$i - 1]}
 	case $SINK in
-		"System")
-			ISSET_SYSTEM=true
-		;;
-		"Discord")
-			ISSET_DISCORD=true
-		;;
-		"Music")
-			ISSET_MUSIC=true
-		;;
+		"System")  ISSET_SYSTEM=true  ;;
+		"Discord") ISSET_DISCORD=true ;;
+		"Music")   ISSET_MUSIC=true 	;;
 	esac
 done
 
 if [ $ISSET_SYSTEM == false ]; then
-	echo "Setting sink for System Audio" | systemd-cat -t "Sink set script"
+	echo "Setting sink for System Audio." | systemd-cat -t "Sink set script"
 	pactl load-module module-null-sink sink_name=System sink_properties=device.description=System_Audio
 fi
 
 if [ $ISSET_DISCORD == false ]; then
-	echo "Setting sink for Discord Audio" | systemd-cat -t "Sink set script"
+	echo "Setting sink for Discord Audio." | systemd-cat -t "Sink set script"
 	pactl load-module module-null-sink sink_name=Discord channels=1 channel_map=mono sink_properties=device.description=Discord_Audio
 fi
 
 if [ $ISSET_MUSIC == false ]; then
-	echo "Setting sink for Music" | systemd-cat -t "Sink set script"
+	echo "Setting sink for Music." | systemd-cat -t "Sink set script"
 	pactl load-module module-null-sink sink_name=Music sink_properties=device.description=Music
 fi
 
-echo "All sinks have been set..." | systemd-cat -t "Sink set script"
+echo "All sinks have been set... Enjoy." | systemd-cat -t "Sink set script"
