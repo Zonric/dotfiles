@@ -2,6 +2,8 @@
 
 xsetroot -cursor_name left-ptr
 
+sinkset
+
 keyd-application-mapper -d
 picom --config $XDG_CONFIG_HOME/picom/picom.conf &
 unclutter --timeout 10 --ignore-scrolling &
@@ -12,5 +14,4 @@ jack_mixer -c ~/.config/jack_mixer/master.xml &
 qpwgraph -m ~/.config/rncbc.org/patchbays/master.qpwgraph &
 
 xmodmap -e 'keycode 135 = Super_R' &
-echo xpro loaded
 [ -f $XDG_CONFIG_HOME/wacom/config ] && source $XDG_CONFIG_HOME/wacom/config
