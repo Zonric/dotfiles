@@ -23,7 +23,7 @@ Configs: ~/.config/herbstluftwm/
 - [CMP](https://github.com/hrsh7th/nvim-cmp) : Autocompletion
 - - [CMP-LSP](https://github.com/hrsh7th/cmp-nvim-lsp) : Autocompletion from LSP
 - [TreeSitter](https://github.com/nvim-treesitter/nvim-treesitter) : Syntax Parser
-- - [TreeSitter-TextObjects](https://github.com/nvim-treesitter-textobjects) : Syntax aware text-objects, select, move, swap, and peek support
+- - [TreeSitter-TextObjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) : Syntax aware text-objects, select, move, swap, and peek support
 - [BarBar](https://github.com/romgrk/barbar.nvim) : Buffer Bar (Tabs for opend files.)
 - [Telescope](https://github.com/nvim-telescope/telescope.nvim) : Extendable Fuzzy Finder
 - - [TSfzfNative](https://github.com/nvim-telescope/telescope-fzf-native.nvim) : fzf syntax for telescope
