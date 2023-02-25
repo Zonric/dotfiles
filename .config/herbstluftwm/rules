@@ -26,9 +26,51 @@ hc foreach T tags.by-name. sprintf ATTR '%c.tiling.root.algorithm' T set_attr AT
 #---------------#
 # Floating Apps #
 #---------------#
+hc rule instance="dev" class="dev" floating=on
 hc rule class="Thunar" floating=on
 hc rule class="QjackCtl" floating=on
-hc rule instance="calibre-ebook-viewer" floating=on
+hc rule class="kitty.float" floating=on
+#hc rule instance="calibre-ebook-viewer" floating=on
+
+# Godot Rules
+hc rule instance="Godot_Engine" floating=on
+hc rule instance="Godot_ProjectList" floating=on
+hc rule instance="Godot_Editor" floating=off
+hc rule instance="Godot_Editor" title="" floating=on
+hc rule instance="Godot_Editor" title~"Alert.*" floating=on
+hc rule instance="Godot_Editor" title~"Choose.*" floating=on
+hc rule instance="Godot_Editor" title~"Command.*" floating=on
+hc rule instance="Godot_Editor" title~"Configure.*" floating=on
+hc rule instance="Godot_Editor" title~"Create.*" floating=on
+hc rule instance="Godot_Editor" title~"Delete.*" floating=on
+hc rule instance="Godot_Editor" title~"Dependencies.*" floating=on
+hc rule instance="Godot_Editor" title~"Duplicating.*" flaoting=on
+hc rule instance="Godot_Editor" title~"Edit.*" floating=on
+hc rule instance="Godot_Editor" title~"Editor.*" floating=on
+hc rule instance="Godot_Editor" title~"Error.*" floating=on
+hc rule instance="Godot_Editor" title~"Export.*" floating=on
+hc rule instance="Godot_Editor" title~"FileSystem.*" floating=on
+hc rule instance="Godot_Editor" title~"History.*" floating=on
+hc rule instance="Godot_Editor" title~"Import.*" floating=on
+hc rule instance="Godot_Editor" title~"Inspector.*" floating=on
+hc rule instance="Godot_Editor" title~"Load.*" floating=on
+hc rule instance="Godot_Editor" title~"Manage.*" floating=on
+hc rule instance="Godot_Editor" title~"Node.*" floating=on
+hc rule instance="Godot_Editor" title~"Open.*" floating=on
+hc rule instance="Godot_Editor" title~"Orphan.*" floating=on
+hc rule instance="Godot_Editor" title~"Owners.*" flaoting=on
+hc rule instance="Godot_Editor" title~"Pick.*" flaoting=on
+hc rule instance="Godot_Editor" title~"Please.*" floating=on
+hc rule instance="Godot_Editor" title~"Project.*" floating=on
+hc rule instance="Godot_Editor" title~"Quick.*" floating=on
+hc rule instance="Godot_Editor" title~"Renam.*" floating=on
+hc rule instance="Godot_Editor" title~"Save.*" floating=on
+hc rule instance="Godot_Editor" title~"Scene.*" floating=on
+hc rule instance="Godot_Editor" title~"Search.*" floating=on
+hc rule instance="Godot_Editor" title~"Thanks.*" floating=on
+hc rule instance="Godot_Editor" title~"Warning.*" floating=on
+
+hc rule instance="drkonqi" class="drkonqi" floating=on
 
 #--------------#
 # General Apps #

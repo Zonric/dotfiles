@@ -34,12 +34,12 @@ for i in ${tags[@]} ; do
 # --- Colors: gary [444444] white [ffffff] light green [66ff66] darkgreen [119966] light teal [33CCFF] dark teal [669999] yellow [FF00FF]
 # --- Tag is not displayed on a monitor
     '.') # EMPTY (Dark Gray) [444444]
-      fcolor $GRAY
+      fcolor $FOREGROUND_ALT
       onclick $monitor ${i:1}
       echo -n " $icon %{A}"
     ;;
     ':') # NOT EMPTY (White) [FFFFFF]
-      fcolor $FOREGROUND_ALT
+      fcolor $FOREGROUND
       onclick $monitor ${i:1}
       echo -n " $icon %{A}"
     ;;

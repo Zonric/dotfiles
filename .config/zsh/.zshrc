@@ -1,36 +1,68 @@
-#git super status
-if [ ! -d "$XDG_CONFIG_HOME/zsh/git-prompt-zsh" ]; then
-	git clone https://gethub.com/Zonric/git-prompt-zsh.git $XDG_CONFIG_HOME/zsh/git-prompt-zsh
-fi
-source $XDG_CONFIG_HOME/zsh/git-prompt-zsh/git-prompt.zsh
-ZSH_GIT_PROMPT_FORCE_BLANK=1
-ZSH_GIT_PROMPT_SHOW_UPSTREAM="full"
+export ZSH="$ZDOTDIR/ohmyzsh"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{magenta}  %f%b"
-ZSH_THEME_GIT_PROMPT_SUFFIX="›"
-ZSH_THEME_GIT_PROMPT_SEPARATOR=" ‹"
-ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[cyan]%}"
-ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}⟳ "
-ZSH_THEME_GIT_PROMPT_UPSTREAM_PREFIX="%{$fg[yellow]%} 󰪅"
-ZSH_THEME_GIT_PROMPT_UPSTREAM_SUFFIX=""
-ZSH_THEME_GIT_PROMPT_DETACHED="%{$fg_no_bold[cyan]%}:"
-ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg_no_bold[cyan]%}↓"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_no_bold[cyan]%}↑"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}✖"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}●"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}✚"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="…"
-ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}⚑"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}󰄬"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-PROMPT=$'%F{green}╒ %f%(?..%F{red}%? %f )%B%F{blue}%~%f%b$(gitprompt)\n%F{green}╘ %f%F{green}➢%f '
-RPROMPT='${date}'
+# CASE_SENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
-export NVM_DIR="$HOME/.config/nvm"
+# Uncomment one of the following lines to change the auto-update behavior
+#zstyle ':omz:update' mode disabled  # disable automatic updates
+#zstyle ':omz:update' mode auto      # update automatically without asking
+#zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# Uncomment the following line to change how often to auto-update (in days).
+#zstyle ':omz:update' frequency 13
 
-zstyle ':completion:*' completer _expand _complete
-unsetopt hist_verify
+# Uncomment the following line if pasting URLs and other text is messed up.
+#DISABLE_MAGIC_FUNCTIONS="true"
+# Uncomment the following line to disable colors in ls.
+#DISABLE_LS_COLORS="true"
+# Uncomment the following line to disable auto-setting terminal title.
+#DISABLE_AUTO_TITLE="true"
+# Uncomment the following line to enable command auto-correction.
+#ENABLE_CORRECTION="true"
 
-[ -f ~/.config/alias ] && source ~/.config/alias
-[ -S "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+#COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+#COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+#DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+#HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+#ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(virtualenv git-prompt)
+
+source $ZSH/oh-my-zsh.sh
+source $ZDOTDIR/custom.zsh-theme
+
+# User configuration
+# Preferred editor for local and remote sessions
+#if [[ -n $SSH_CONNECTION ]]; then
+#  export EDITOR='vim'
+#else
+#  export EDITOR='mvim'
+#fi
+
+# Compilation flags
+#export ARCHFLAGS="-arch x86_64"
+
+#alias zshconfig="mate ~/.config/zsh/.zshrc"
+#alias ohmyzsh="mate ~/.oh-my-zsh"
+source ~/.config/alias

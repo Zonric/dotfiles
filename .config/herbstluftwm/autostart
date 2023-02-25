@@ -20,8 +20,8 @@ done
 # Autostart #
 #-----------#
 polybar_launcher &
+dunst &
 
 #discord &
 #spotify-launcher &
 #obs &
-

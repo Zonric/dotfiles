@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 BAR_NAME="primary"
 BAR_PID=$(pgrep -a "polybar" | grep "$BAR_NAME" | cut -d" " -f1)
-PLAYER="spotify"
+PLAYER="spotifyd"
 FORMAT="{{artist}} - {{title}}"
 
 update() {
@@ -11,7 +11,7 @@ update() {
 	done < <(echo "$1")
 }
 
-PLAYER_STATUS=$(playerctl -p spotify status)
+PLAYER_STATUS=$(playerctl -p spotifyd status)
 
 if [ "$1" == "--scroll" ]; then
 	echo "$STATUS"
@@ -23,6 +23,6 @@ else
 		update "$BAR_PID" 2
 		playerctl --player=$PLAYER metadata --format "$FORMAT"
 	elif [ "$PLAYER_STATUS" = "No players found" ]; then
-		echo "$PLAYER_STATUS"
+		echo "Stopped"
 	fi
 fi
