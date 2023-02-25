@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 hc() {
     herbstclient "$@"
 }
@@ -44,7 +44,7 @@ hc rule instance="Godot_Editor" title~"Configure.*" floating=on
 hc rule instance="Godot_Editor" title~"Create.*" floating=on
 hc rule instance="Godot_Editor" title~"Delete.*" floating=on
 hc rule instance="Godot_Editor" title~"Dependencies.*" floating=on
-hc rule instance="Godot_Editor" title~"Duplicating.*" flaoting=on
+hc rule instance="Godot_Editor" title~"Duplicating.*" floating=on
 hc rule instance="Godot_Editor" title~"Edit.*" floating=on
 hc rule instance="Godot_Editor" title~"Editor.*" floating=on
 hc rule instance="Godot_Editor" title~"Error.*" floating=on
@@ -58,8 +58,8 @@ hc rule instance="Godot_Editor" title~"Manage.*" floating=on
 hc rule instance="Godot_Editor" title~"Node.*" floating=on
 hc rule instance="Godot_Editor" title~"Open.*" floating=on
 hc rule instance="Godot_Editor" title~"Orphan.*" floating=on
-hc rule instance="Godot_Editor" title~"Owners.*" flaoting=on
-hc rule instance="Godot_Editor" title~"Pick.*" flaoting=on
+hc rule instance="Godot_Editor" title~"Owners.*" floating=on
+hc rule instance="Godot_Editor" title~"Pick.*" floating=on
 hc rule instance="Godot_Editor" title~"Please.*" floating=on
 hc rule instance="Godot_Editor" title~"Project.*" floating=on
 hc rule instance="Godot_Editor" title~"Quick.*" floating=on

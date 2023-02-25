@@ -1,7 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 hc() {
-    herbstclient "$@"
+	herbstclient "$@"
 }
 
 hc emit_hook reload
@@ -13,7 +13,7 @@ source ~/.config/herbstluftwm/theme
 
 hc detect_monitors
 for monitor in $(hc list_monitors | cut -d':' -f1); do
-  hc pad $monitor 25
+	hc pad $monitor 25
 done
 
 #-----------#

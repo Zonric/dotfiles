@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 hc() {
 		herbstclient "$@"
 }
@@ -144,8 +144,7 @@ for i in "${!tag_names[@]}" ; do
 	hc add "${tag_names[$i]}"
 	key="${tag_keys[$i]}"
 	if ! [ -z "$key" ] ; then
-		hc keybind "$Mod-$key" chain , silent substitute M tags."$i".my_monitor \
-		focus_monitor M , use_index "$i"
+		hc keybind "$Mod-$key" chain , silent substitute M tags."$i".my_monitor focus_monitor M , use_index "$i"
 		hc keybind "$Mod-Shift-$key" move_index "$i"
 	fi
 done
