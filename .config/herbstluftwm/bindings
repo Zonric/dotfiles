@@ -42,8 +42,10 @@ hc keybind Shift-Print chain , \
 	spawn scrot -M 2 -F ~/Pictures/Screenshots/Mon-R_%F_%T_'$w'x'$h'.png
 
 #-- Split
-hc keybind $Mod-o			 split	 right	 0.5
-hc keybind $Mod-u			 split	 bottom	0.5
+hc keybind $Mod-o 			split right  0.5
+hc keybind $Mod-shift-o split right  0.5
+hc keybind $Mod-u 			split bottom 0.5
+hc keybind $Mod-shift-u split bottom 0.5
 
 ##----------------------------------------##
 ##--- Focus ------------------------------##

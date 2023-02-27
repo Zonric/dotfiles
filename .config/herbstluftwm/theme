@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+hc set focus_crosses_monitor_boundaries false
+
 source ~/.config/herbstluftwm/themes/active_colors
 
 hc attr theme.tiling.reset 1

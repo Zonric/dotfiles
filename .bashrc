@@ -6,3 +6,5 @@ export HISTCONTROL=ignoreboth:erasedups
 export GPG_TTY=$(tty)
 
 . "$HOME/.cargo/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
