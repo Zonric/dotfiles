@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 hc() {
 		herbstclient "$@"
 }
 
-##----------------------------------------##
-##--- Settings ---------------------------##
-##----------------------------------------##
+###--------------------###
+###---   Settings   ---###
+###--------------------###
 hc keyunbind --all
 hc mouseunbind --all
 
@@ -13,25 +13,28 @@ hc mouseunbind --all
 #Mod=Mod1		# Use alt as the main modifier
 Mod=Mod4	 # Use the super key as the main modifier
 
-##----------------------------------------##
-##--- Mouse Buttons ----------------------##
-##----------------------------------------##
+###-------------------------###
+###---   Mouse Buttons   ---###
+###-------------------------###
 hc mousebind $Mod-Button1 move
 hc mousebind $Mod-Button2 zoom
 hc mousebind $Mod-Button3 resize
 
-##----------------------------------------##
-##--- Spawning ---------------------------##
-##----------------------------------------##
-hc keybind $Mod-Return spawn "${TERMINAL:-kitty}"
-hc keybind $Mod-w spawn "firefox"
-hc keybind $Mod-Shift-w spawn "vieb"
+###--------------------###
+###---   Spawning   ---###
+###--------------------###
+hc keybind $Mod-Return spawn ${TERMINAL:-kitty}
+hc keybind $Mod-w spawn ${BROWSER:-brave}
+hc keybind $Mod-Shift-w spawn brave --incognito
+hc keybind $Mod-Control-w spawn brave --tor
 hc keybind $Mod-e spawn kitty --class kitty.float -e ranger
-hc keybind $Mod-Shift-e spawn thunar
+hc keybind $Mod-Shift-e spawn ${VISUALFILEMAN:-thunar}
 hc keybind $Mod-r spawn rofi -show run
 hc keybind $Mod-Home spawn feh --no-xinerama --bg-scale --randomize ~/Pictures/Wallpapers
 
-#-- Screenshooting
+###--------------------------###
+###---   Screenshooting   ---###
+###--------------------------###
 hc keybind Print spawn scrot -F ~/Pictures/Screenshots/Fms_%F_%T_'$w'x'$h'.png
 hc keybind Alt-Print spawn scrot -ub -F ~/Pictures/Screenshots/Win_%F_%T_'$w'x'$h'.png
 hc keybind Control-Print \
@@ -41,15 +44,17 @@ hc keybind Shift-Print chain , \
 	spawn scrot -M 1 -F ~/Pictures/Screenshots/Mon-L_%F_%T_'$w'x'$h'.png , \
 	spawn scrot -M 2 -F ~/Pictures/Screenshots/Mon-R_%F_%T_'$w'x'$h'.png
 
-#-- Split
+###-----------------###
+###---   Split   ---###
+###-----------------###
 hc keybind $Mod-o 			split right  0.5
 hc keybind $Mod-shift-o split right  0.5
 hc keybind $Mod-u 			split bottom 0.5
 hc keybind $Mod-shift-u split bottom 0.5
 
-##----------------------------------------##
-##--- Focus ------------------------------##
-##----------------------------------------##
+###-----------------###
+###---   Focus   ---###
+###-----------------###
 hc keybind $Mod-Left	focus left
 hc keybind $Mod-Down	focus down
 hc keybind $Mod-Up		focus up
@@ -64,15 +69,14 @@ hc keybind $Mod-Tab				 cycle +1
 hc keybind $Mod-Shift-Tab	 cycle_all +1
 hc keybind $Mod-i jumpto urgent
 
-# cycle through tags
 hc keybind $Mod-bracketleft	 use_index -1 --skip-visible
 hc keybind $Mod-bracketright	use_index +1 --skip-visible
 hc keybind $Mod-comma	focus_monitor +1
 hc keybind $Mod-period focus_monitor -1
 
-##----------------------------------------##
-##--- Movement ---------------------------##
-##----------------------------------------##
+###--------------------###
+###---   Movement   ---###
+###--------------------###
 hc keybind $Mod-Shift-h shift left
 hc keybind $Mod-Shift-j shift down
 hc keybind $Mod-Shift-k shift up
@@ -82,9 +86,9 @@ hc keybind $Mod-Shift-bracketright move_index +1 --skip-visible
 hc keybind $Mod-Shift-comma	shift_to_monitor +1
 hc keybind $Mod-Shift-period shift_to_monitor -1
 
-##----------------------------------------##
-##--- Resize -----------------------------##
-##----------------------------------------##
+###------------------###
+###---   Resize   ---###
+###------------------###
 resizestep=0.02
 hc keybind $Mod-Alt-h			 resize left +$resizestep
 hc keybind $Mod-Alt-j			 resize down +$resizestep
@@ -95,9 +99,9 @@ hc keybind $Mod-Alt-Down		resize down +$resizestep
 hc keybind $Mod-Alt-Up			resize up +$resizestep
 hc keybind $Mod-Alt-Right	 resize right +$resizestep
 
-##----------------------------------------##
-##--- Display Modes ----------------------##
-##----------------------------------------##
+###-------------------------###
+###---   Display Modes   ---###
+###-------------------------###
 #hc keybind $Mod-r remove
 hc keybind $Mod-s floating toggle
 hc keybind $Mod-f set_attr clients.focus.floating toggle
@@ -110,9 +114,9 @@ hc keybind $Mod-space cycle_layout +1
 hc keybind $Mod-Shift-space cycle_layout -1
 hc keybind $Mod-Control-space split explode
 
-##----------------------------------------##
-##--- Audio Controls ---------------------##
-##----------------------------------------##
+###--------------------------###
+###---   Audio Controls   ---###
+###--------------------------###
 hc keybind XF86AudioMute spawn pamixer -t
 # My audio wheel is reversed
 hc keybind XF86AudioRaiseVolume spawn pamixer -d 5
@@ -121,21 +125,21 @@ hc keybind XF86AudioPrev spawn playerctl previous -p spotify,%any
 hc keybind XF86AudioPlay spawn playerctl play-pause -p spotify,%any
 hc keybind XF86AudioNext spawn playerctl next -p spotify,%any
 
-##----------------------------------------##
-##--- Reload/Restart/Kill/Exit -----------##
-##----------------------------------------##
+###------------------------------------###
+###---   Reload/Restart/Kill/Exit   ---###
+###------------------------------------###
 hc keybind $Mod-q close_or_remove
 hc keybind $Mod-Shift-q close
 hc keybind $Mod-Control-Shift-q quit
 hc keybind $Mod-Shift-r reload
 
-##----------------------------------------##
-##--- Specal/For_Window ------------------##
-##----------------------------------------##
+###-----------------------------###
+###---   Specal/For_Window   ---###
+###-----------------------------###
 
-##----------------------------------------##
-##--- TAGS -------------------------------##
-##----------------------------------------##
+###----------------###
+###---   TAGS   ---###
+###----------------###
 hc attr settings.default_frame_layout vertical
 
 tag_names=( {1..10} )
@@ -151,13 +155,17 @@ for i in "${!tag_names[@]}" ; do
 	fi
 done
 
-##--- Add scratchpads ---##
+###---------------------------###
+###---   Add scratchpads   ---###
+###---------------------------###
 hc add sysadmin
 hc add audio
 hc keybind $Mod-grave spawn scratchpad sysadmin
 hc keybind $Mod-Shift-grave spawn scratchpad audio
 
-##--- Tag Lock ---##
+###--------------------###
+###---   Tag Lock   ---###
+###--------------------###
 hc keybind $Mod-t chain \
 	, new_attr string tags.focus.my_monitor \
 	, substitute M monitors.focus.index set_attr tags.focus.my_monitor M \
@@ -169,6 +177,6 @@ hc keybind $Mod-t chain \
 hc keybind $Mod-Shift-t \
 	remove_attr tags.focus.my_monitor
 
-##----------------------------------------##
-##--- EOF --------------------------------##
-##----------------------------------------##
+###---------------###
+###---   EOF   ---###
+###---------------###

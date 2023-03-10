@@ -1,7 +1,7 @@
 export ZSH="$ZDOTDIR/ohmyzsh"
 HYPHEN_INSENSITIVE="true"
 
-plugins=(git-prompt)
+plugins=(git-prompt dotenv virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/../custom.zsh-theme

@@ -6,8 +6,9 @@ export CXX=/usr/bin/clang++
 export EDITOR=nvim
 export VISUAL=code
 export TERMINAL=kitty
-export BROWSER=firefox
+export BROWSER=brave
 export FILEMAN=ranger
+export VISUALFILEMAN=ranger
 export PAGER=less
 export LESS=-x2R
 
@@ -26,6 +27,8 @@ numlockx
 if [ -d $HOME/.local/bin ] ; then
 	export PATH="$PATH:$(du $HOME/.local/bin | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 fi
+
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 [ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources
 [ -f "$XDG_CONFIG_HOME/alias" ] && source "$XDG_CONFIG_HOME/alias"

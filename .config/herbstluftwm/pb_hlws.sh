@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 source ~/.config/herbstluftwm/themes/active_colors
 
@@ -16,7 +16,7 @@ for i in ${tags[@]} ; do
 	case ${i:1} in
 		# --- ICONS:					歷 	󰕃	󰙯				 既 <|>  華
 		'1')	icon="󱃖" ;;
-		'2')	icon="" ;;
+		'2')	icon="" ;;
 		'3')	icon="" ;;
 		'4')	icon="" ;;
 		'5')	icon="" ;;
@@ -36,7 +36,7 @@ for i in ${tags[@]} ; do
 		'.') # EMPTY (Dark Gray) [444444]
 			fcolor $FOREGROUND_ALT
 			onclick $monitor ${i:1}
-			echo -n " $icon %{A}"
+			#echo -n " $icon %{A}"
 		;;
 		':') # NOT EMPTY (White) [FFFFFF]
 			fcolor $FOREGROUND
@@ -60,12 +60,12 @@ for i in ${tags[@]} ; do
 		'%') # and is FOCUSED (Light Blue Teal) [33CCFF]
 			fcolor $ACTIVE
 			onclick $monitor ${i:1}
-			echo -n " $icon %{A}"
+			#echo -n " $icon %{A}"
 		;;
 		'-') # and is NOT focused (Dark Blue/Dark Teal) [669999]
 			fcolor $ACTIVE_ALT
 			onclick $monitor ${i:1}
-			echo -n " $icon %{A}"
+			#echo -n " $icon %{A}"
 		;;
 
 		# --- Tag contains Urgent Window!

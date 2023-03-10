@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 hc() {
 	herbstclient "$@"
@@ -7,7 +7,7 @@ hc() {
 hc emit_hook reload
 xsetroot -solid '#003333'
 
-source ~/.config/herbstluftwm/bindings
+source ~/.config/herbstluftwm/keybinds
 source ~/.config/herbstluftwm/rules
 source ~/.config/herbstluftwm/theme
 
@@ -22,6 +22,6 @@ done
 polybar_launcher &
 dunst &
 
-#discord &
+discord &
 #spotify-launcher &
 #obs &

@@ -13,3 +13,4 @@ alias pacs="pacman -Ss" \
   cdiff="cfg diff" \
   pacman="pacman --color=auto" \
   vim="nvim" \
+  :q="exit" \
