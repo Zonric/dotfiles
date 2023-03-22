@@ -2,6 +2,7 @@
 
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
+export MAKEFLAGS="-j$(expr $(nproc))"
 
 export EDITOR=nvim
 export VISUAL=code
