@@ -14,3 +14,6 @@ alias pacs="pacman -Ss" \
   pacman="pacman --color=auto" \
   vim="nvim" \
   :q="exit" \
+  rm="trash" \
+  rmdir="trash" \
+  trash-ls="trash-list" \

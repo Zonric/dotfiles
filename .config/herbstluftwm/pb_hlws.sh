@@ -14,15 +14,15 @@ tags=( $(herbstclient tag_status $monitor) )
 separator=""
 for i in ${tags[@]} ; do
 	case ${i:1} in
-		# --- ICONS:					歷 	󰕃	󰙯				 既 <|>  華
-		'1')	icon="󱃖" ;;
-		'2')	icon="" ;;
-		'3')	icon="" ;;
-		'4')	icon="" ;;
+###---   ICONS:         	 	歷   	󰕃 	󰙯 	 	 	 	 既    華󱁴
+		'1')	icon="󰅱" ;;
+		'2')	icon="" ;;
+		'3')	icon="" ;;
+		'4')	icon="" ;;
 		'5')	icon="" ;;
-		'6')	icon="" ;;
-		'7')	icon="" ;;
-		'8')	icon="󰓇" ;;
+		'6')	icon="" ;;
+		'7')	icon="󱁴" ;;
+		'8')	icon="" ;;
 		'9')	icon="󰙯" ;;
 		'10') icon="" ;;
 		'scratchpad') icon="" ;;

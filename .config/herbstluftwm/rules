@@ -10,27 +10,31 @@ hc unrule -F
 hc rule focus=on # normally focus new clients
 hc rule floatplacement=center
 
-lock_tag_to_monitor() {
-    hc chain , new_attr string tags.by-name."$1".my_monitor , set_attr tags.by-name."$1".my_monitor "$2"
-}
-
-lock_tag_to_monitor 10 0
-lock_tag_to_monitor 1 0
-lock_tag_to_monitor 2 1
-lock_tag_to_monitor 7 2
-lock_tag_to_monitor 8 2
-lock_tag_to_monitor 9 2
+# lock_tag_to_monitor() {
+#     hc chain , new_attr string tags.by-name."$1".my_monitor , set_attr tags.by-name."$1".my_monitor "$2"
+# }
+#
+# lock_tag_to_monitor 10 0
+# lock_tag_to_monitor 1 0
+# lock_tag_to_monitor 2 1
+# lock_tag_to_monitor 7 2
+# lock_tag_to_monitor 8 2
+# lock_tag_to_monitor 9 2
 
 hc foreach T tags.by-name. sprintf ATTR '%c.tiling.root.algorithm' T set_attr ATTR horizontal
 
 #---------------#
 # Floating Apps #
 #---------------#
-hc rule instance="dev" class="dev" floating=on
+hc rule class="dev" floating=on
+hc rule class="debug" floating=on
 hc rule class="Thunar" floating=on
 hc rule class="QjackCtl" floating=on
 hc rule class="kitty.float" floating=on
 #hc rule instance="calibre-ebook-viewer" floating=on
+
+hc rule class="Lutris" floating=on
+hc rule class="battle.net.exe" floating=on
 
 # Godot Rules
 hc rule instance="Godot_Engine" floating=on
