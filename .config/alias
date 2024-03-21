@@ -5,16 +5,10 @@ alias pacs="pacman -Ss" \
 	mkdir="mkdir -v" \
 	ls="ls --color=always --group-directories-first" \
 	grep="grep --color=auto" \
-	icat="kitty icat" \
-	cfg="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" \
+	cfg="/usr/bin/git --git-dir=/home/zonric/.dotfiles/ --work-tree=$HOME" \
 	cdiff="cfg diff" \
 	pacman="pacman --color=auto" \
 	vim="nvim" \
-	:q="exit" \
-	rm="trash-put" \
-	rmdir="trash" \
-	trash-ls="trash-list" \
-	logout="qdbus org.kde.Shutdown /Shutdown logout" \
-	vim="nvim" \
 	vimcon="vim ~/.config/nvim/" \
+	:q="exit" \
 
