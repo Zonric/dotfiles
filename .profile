@@ -5,12 +5,11 @@ export CXX=/usr/bin/clang++
 export MAKEFLAGS="-j$(expr $(nproc))"
 
 export EDITOR=nvim
-export VISUAL=code
-export TERMINAL=kitty
-#export BROWSER=brave-browser-nightly
+export VISUAL=nvim
+export TERMINAL=alacritty
 export BROWSER=firefox
 export FILEMAN=ranger
-export VISUALFILEMAN=ranger
+export VISUALFILEMAN=thunar
 export PAGER=less
 export LESS=-x2R
 
@@ -22,15 +21,23 @@ export XDG_DATA_HOME=$HOME/.local/share
 export ZDOTDIR=$HOME/.config/zsh
 export GOPATH=$HOME/.go
 
+export NVIMCONFIG=$HOME/.config/nvim/init.lua
+export QT_STYLE_OVERRIDE=adwaita
+
 umask 002
 
 numlockx
 
-if [ -d $HOME/.local/bin ] ; then
+# Conditional $PATH adds:
+if [ -d $HOME/.local/bin ]; then
 	export PATH="$PATH:$(du $HOME/.local/bin | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 fi
-
-export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+if [ -d $HOME/.config/composer/vendor/bin ]; then
+	export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+fi
+if [ -d $HOME/.dotnet/tools ]; then
+	export PATH="$PATH:$HOME/.dotnet/tools"
+fi
 
 [ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources
 [ -f "$XDG_CONFIG_HOME/alias" ] && source "$XDG_CONFIG_HOME/alias"
@@ -38,5 +45,5 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 #. "$HOME/.cargo/env"
 
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"	# This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"	# This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion

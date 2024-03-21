@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
-stty -ixon
-source /usr/share/powerline/bindings/bash/powerline.sh
-source /home/zonric/.config/alias
-export HISTCONTROL=ignoreboth:erasedups
-export GPG_TTY=$(tty)
+#
+# ~/.bashrc
+#
 
-. "$HOME/.cargo/env"
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+PS1='[\u@\h \W]\$ '

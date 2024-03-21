@@ -23,9 +23,9 @@ hc mousebind $MOD-Button3 resize
 ###--------------------###
 ###---   Spawning   ---###
 ###--------------------###
-hc keybind $MOD-Return spawn ${TERMINAL:-kitty}
+hc keybind $MOD-Return spawn ${TERMINAL}
 hc keybind $MOD-w spawn ${BROWSER:-firefox}
-#hc keybind $MOD-Shift-w spawn ${BROWSER} --incognito
+hc keybind $MOD-Shift-w spawn ${BROWSER} -private-window
 #hc keybind $MOD-Control-w spawn ${BROWSER} --tor
 hc keybind $MOD-c spawn rofi -show calc -no-show-match -no-sort
 hc keybind $MOD-e spawn kitty --class kitty.float -e ranger
@@ -37,14 +37,15 @@ hc keybind $MOD-s spawn ~/.config/rofi/scripts/switch_sinks.sh
 ###--------------------------###
 ###---   Screenshooting   ---###
 ###--------------------------###
-hc keybind Print spawn scrot -F ~/Pictures/Screenshots/Fms_%F_%T_'$w'x'$h'.png
-hc keybind Alt-Print spawn scrot -ub -F ~/Pictures/Screenshots/Win_%F_%T_'$w'x'$h'.png
-hc keybind Control-Print \
-	spawn scrot -s -f -F ~/Pictures/Screenshots/Sel_%F_%T_'$w'x'$h'.png -e 'xclip -selection clipboard -t image/png -i $f'
+hc keybind Print spawn zshot full
+hc keybind Control-Print spawn zshot select
+hc keybind Alt-Print spawn \
+	scrot -ub -F ~/pictures/screenshots/Window_%s_'$w'x'$h'.png -e 'xclip -selection clipboard -t image/png -i $f'
+
 hc keybind Shift-Print chain , \
-	spawn scrot -M 0 -F ~/Pictures/Screenshots/Mon-C_%F_%T_'$w'x'$h'.png , \
-	spawn scrot -M 1 -F ~/Pictures/Screenshots/Mon-L_%F_%T_'$w'x'$h'.png , \
-	spawn scrot -M 2 -F ~/Pictures/Screenshots/Mon-R_%F_%T_'$w'x'$h'.png
+	spawn scrot -M 0 -F ~/pictures/screenshots/Mon-0_%s_'$w'x'$h'.png , \
+	spawn scrot -M 1 -F ~/pictures/screenshots/Mon-1_%s_'$w'x'$h'.png , \
+	spawn scrot -M 2 -F ~/pictures/screenshots/Mon-2_%s_'$w'x'$h'.png
 
 ###-----------------###
 ###---   Split   ---###

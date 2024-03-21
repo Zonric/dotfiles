@@ -1,21 +1,9 @@
 #!/usr/bin/env bash
-
 xsetroot -cursor_name left-ptr
 
-sinkset
-
-keyd-application-mapper -d
-picom --config $XDG_CONFIG_HOME/picom/picom.conf &
-unclutter --timeout 10 --ignore-scrolling &
-feh --no-xinerama --recursive --bg-fill --randomize ~/Pictures/Wallpapers/ &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-# Moving jack_mixer to individual desktop implementations.
-#jack_mixer -c ~/.config/jack_mixer/master.xml &
-qpwgraph -m ~/.config/rncbc.org/patchbays/master.qpwgraph &
-
-xmodmap -e "keycode 135 = Super_R"
-xmodmap -e "remove lock = Caps_Lock"
-xmodmap -e "keycode 66 = Escape"
-
 [ -f $XDG_CONFIG_HOME/wacom/config ] && source $XDG_CONFIG_HOME/wacom/config
+
+#source $XDG_CONFIG_HOME/monitors/config.sh
+

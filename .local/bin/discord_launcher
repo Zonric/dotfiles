@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+echo $(ps aux | grep discord )
+
+#if [ $(ps aux | grep discord | wc -l) < 1 ]; then
+#	discord & disown
+#fi
+

@@ -1,1 +1,1 @@
-.profile
+/home/zonric/.profile

@@ -7,7 +7,7 @@ hc() {
 hc emit_hook reload
 xsetroot -solid '#003333'
 
-source ~/.config/herbstluftwm/keybinds
+source ~/.config/herbstluftwm/keys
 source ~/.config/herbstluftwm/rules
 source ~/.config/herbstluftwm/theme
 
@@ -19,15 +19,17 @@ done
 #-----------#
 # Autostart #
 #-----------#
+picom &
 polybar_launcher &
-dunst &
-
-JACKMIXCHECK=$(pgrep -a "python3" | grep "/usr/bin/jack_mixer" | wc -l)
-if [[ $JACKMIXCHECK == 0 ]]; then
-	jack_mixer -c ~/.config/jack_mixer/master.xml &
-	echo "System" > ~/.config/polybar/scripts/var
-fi
-
+$HOME/.fehbg
+#dunst &
 discord &
 #spotify-launcher &
 #obs &
+
+#JACKMIXCHECK=$(pgrep -a "python3" | grep "/usr/bin/jack_mixer" | wc -l)
+#if [[ $JACKMIXCHECK == 0 ]]; then
+#	jack_mixer -c ~/.config/jack_mixer/master.xml &
+#	echo "System" > ~/.config/polybar/scripts/var
+#fi
+

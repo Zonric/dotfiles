@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+SSMODE=$1
+cd ~/pictures/screenshots/
+
+case $SSMODE in
+	full)
+		scrot 'Full_%s_$wx$h.png' -Z 4 -e 'xclip -selection clipboard -t image/png -i $f'
+		;;
+	select)
+		scrot 'Sel_%s_$wx$h.png' -s -f -Z 4 -e 'xclip -selection clipboard -t image/png -i $f'
+		;;
+esac
+
+
