@@ -50,10 +50,21 @@ hc keybind Shift-Print chain , \
 ###-----------------###
 ###---   Split   ---###
 ###-----------------###
-hc keybind $MOD-o 			split right	0.5
-hc keybind $MOD-Shift-o split right	0.5
-hc keybind $MOD-u 			split bottom 0.5
-hc keybind $MOD-Shift-u split bottom 0.5
+hc keybind $MOD-p chain ,\
+	split left 0.3 ,\
+	focus left
+hc keybind $MOD-o chain ,\
+	split right	0.7 ,\
+	focus right
+hc keybind $MOD-Shift-o chain , \
+	split left 0.3 , \
+	focus left
+hc keybind $MOD-u chain , \
+	split bottom 0.7 , \
+	focus down
+hc keybind $MOD-Shift-u chain , \
+	split top 0.3 , \
+	focus up
 
 ###-----------------###
 ###---   Focus   ---###
@@ -116,7 +127,7 @@ hc keybind $MOD-Control-space split explode
 ###---   Audio Controls   ---###
 ###--------------------------###
 # My audio wheel is reversed
-GETSINK=$(pamixer --list-sinks | grep "Music" | awk '{ print $1 }')
+GETSINK=$(pamixer --list-sinks | grep "System" | awk '{ print $1 }')
 hc keybind XF86AudioMute spawn pamixer --sink $GETSINK -t
 hc keybind XF86AudioLowerVolume spawn pamixer --sink $GETSINK -i 5 # Raise Volume
 hc keybind XF86AudioRaiseVolume spawn pamixer --sink $GETSINK -d 5 # Lower Volume
@@ -145,8 +156,8 @@ for i in "${!TAGNAMES[@]}" ; do
 	hc add "${TAGNAMES[$i]}"
 	KEY="${TAGKEYS[$i]}"
 	if ! [ -z "$KEY" ] ; then
-#		hc keybind "$MOD-$KEY" chain , silent substitute M tags."$i".my_monitor focus_monitor M , use_index "$i"
-		hc keybind "$MOD-$KEY" use_index "$i"
+		hc keybind "$MOD-$KEY" chain , silent substitute M tags."$i".my_monitor focus_monitor M , use_index "$i"
+#		hc keybind "$MOD-$KEY" use_index "$i"
 		hc keybind "$MOD-Shift-$KEY" move_index "$i"
 	fi
 done
@@ -164,16 +175,16 @@ hc keybind $MOD-Shift-XF86AudioMute spawn scratchpad audio
 ###--------------------###
 ###---   Tag Lock   ---###
 ###--------------------###
-# hc keybind $MOD-t chain \
-# 	, new_attr string tags.focus.my_monitor \
-# 	, substitute M monitors.focus.index set_attr tags.focus.my_monitor M \
-# 	, try and \
-# 		. compare monitors.focus.name != "" \
-# 		. substitute M monitors.focus.name \
-# 				set_attr tags.focus.my_monitor M
+hc keybind $MOD-t chain \
+	, new_attr string tags.focus.my_monitor \
+	, substitute M monitors.focus.index set_attr tags.focus.my_monitor M \
+	, try and \
+		. compare monitors.focus.name != "" \
+		. substitute M monitors.focus.name \
+				set_attr tags.focus.my_monitor M
 #
-# hc keybind $MOD-Shift-t \
-# 	remove_attr tags.focus.my_monitor
+hc keybind $MOD-Shift-t \
+	remove_attr tags.focus.my_monitor
 
 ###---------------###
 ###---   EOF   ---###

@@ -23,7 +23,10 @@ picom &
 polybar_launcher &
 $HOME/.fehbg
 #dunst &
-discord &
+qpwgraph &
+sinkset &
+discord_launcher &
+steam &
 #spotify-launcher &
 #obs &
 

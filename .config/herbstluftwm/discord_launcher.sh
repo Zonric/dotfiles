@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+COUNT=$(ps -ef | grep opt/discord/Discord | wc | awk {'print $1'})
+
+echo $COUNT
+
+if [ "$COUNT" -gt 2 ]; then
+	notify-send "Discord is already running."
+	exit
+fi
+
+discord & disown
+
