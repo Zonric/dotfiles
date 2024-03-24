@@ -22,7 +22,7 @@ export ZDOTDIR=$HOME/.config/zsh
 export GOPATH=$HOME/.go
 
 export NVIMCONFIG=$HOME/.config/nvim/init.lua
-export QT_STYLE_OVERRIDE=adwaita
+export QT_STYLE_OVERRIDE=kvantum
 
 umask 002
 

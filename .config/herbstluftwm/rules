@@ -35,12 +35,15 @@ hc rule class="debug" floating=on
 hc rule class="Thunar" floating=on
 hc rule class="QjackCtl" floating=on
 hc rule class="kitty.float" floating=on
+hc rule instance="kvantummanager" floating=on
 #hc rule instance="calibre-ebook-viewer" floating=on
 
 hc rule class="Lutris" floating=on
 hc rule class="battle.net.exe" floating=on
 
-# Godot Rules
+#---------------#
+# Godot Rules   #
+#---------------#
 hc rule instance="Godot_Engine" floating=on
 hc rule instance="Godot_ProjectList" floating=on
 hc rule instance="Godot_Editor" floating=off
