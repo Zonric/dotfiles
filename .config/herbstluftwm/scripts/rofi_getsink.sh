@@ -20,4 +20,3 @@ hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume $CHOSEN -5%
 echo $CHOSEN > ~/.config/herbstluftwm/setsink
 notify-send "Sink set to: $CHOSEN"
 
-
