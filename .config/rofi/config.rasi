@@ -1,22 +1,23 @@
 configuration {
-	font: "Envy Code R 14";
-	line-margin: 10;
-	display-ssh:    "";
-  display-run:    "";
-  display-drun:   "";
+  font: "Envy Code R 14";
+  line-margin: 10;
+  display-ssh: "";
+  display-run: "";
+  display-drun: "";
   display-window: "";
-  display-combi:  "";
-  show-icons:     true;
+  display-combi: "";
+  show-icons: true;
+  modi: "window,run,drun";
 }
 
 @theme "~/.config/rofi/nord.rasi"
 
 listview {
-	lines: 10;
-	columns: 1;
+  lines: 10;
+  columns: 1;
 }
 
 window {
-	width: 10%;
+  width: 10%;
   height: 30%;
 }

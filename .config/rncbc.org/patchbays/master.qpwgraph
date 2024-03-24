@@ -2,68 +2,32 @@
 <patchbay name="master" version="0.6.2">
  <items>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="VLC media player (LibVLC 3.0.18)" port="VLC media player (LibVLC 3.0.18):output_FR"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Music" port="Music:monitor_FR"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="System_Audio" port="System_Audio:monitor_FL"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="jack_mixer" port="jack_mixer:Input Out L"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
+   <output node="System Audio/Sink sink" port="System Audio/Sink sink:monitor_FL"/>
+   <input node="jack_mixer" port="jack_mixer:System Audio L"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="spotify" port="spotify:output_FR"/>
-   <input node="jack_mixer" port="jack_mixer:Input R"/>
+   <input node="OBS_Music" port="OBS_Music:in_2"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Firefox" port="Firefox:output_FL"/>
-   <input node="SpotifyPassthrough Audio/Sink sink" port="SpotifyPassthrough Audio/Sink sink:playback_FL"/>
+   <output node="jack_mixer" port="jack_mixer:Music Out R"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Noise Canceling" port="Noise Canceling:capture_1"/>
+   <input node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:input_MONO"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_MONO"/>
-   <input node="SpotifyPassthrough Audio/Sink sink" port="SpotifyPassthrough Audio/Sink sink:playback_FL"/>
+   <input node="SpotifyPassthrough Audio/Sink sink" port="SpotifyPassthrough Audio/Sink sink:playback_FR"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Discord_Audio" port="Discord_Audio:monitor_MONO"/>
-   <input node="Nari Ultimate Chat" port="Razer Nari Ultimate:playback_MONO"/>
+   <output node="Firefox" port="Firefox:output_FL"/>
+   <input node="OBS_Web" port="OBS_Web:in_1"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="System Audio/Sink sink" port="System Audio/Sink sink:monitor_FL"/>
-   <input node="OBS_System_Audio" port="OBS_System_Audio:in_1"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="System Audio/Sink sink" port="System Audio/Sink sink:monitor_FR"/>
-   <input node="OBS_System_Audio" port="OBS_System_Audio:in_2"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="jack_mixer" port="jack_mixer:System Audio Out L"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Chromium" port="Chromium:output_FL"/>
-   <input node="OBS_Discord" port="OBS_Discord:in_2"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Music" port="Music:monitor_FL"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_FL"/>
-   <input node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:playback_FL"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="spotify" port="spotify:output_FR"/>
-   <input node="jack_mixer" port="jack_mixer:Music R"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="InnoGear UC016 Mono" port="InnoGear UC016:capture_MONO"/>
-   <input node="Noise Canceling source" port="Noise Canceling source:input_MONO"/>
+   <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_MONO"/>
+   <input node="Discord_Audio" port="Discord_Audio:playback_MONO"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="jack_mixer" port="jack_mixer:Mic Out"/>
@@ -82,60 +46,112 @@
    <input node="OBS_Music" port="OBS_Music:in_1"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="spotify" port="spotify:output_FR"/>
-   <input node="OBS_Music" port="OBS_Music:in_2"/>
+   <output node="System Audio/Sink sink" port="System Audio/Sink sink:monitor_FR"/>
+   <input node="OBS_System_Audio" port="OBS_System_Audio:in_2"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="System Audio/Sink sink" port="System Audio/Sink sink:monitor_FL"/>
-   <input node="jack_mixer" port="jack_mixer:System Audio L"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="jack_mixer" port="jack_mixer:Music Out R"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Noise Canceling" port="Noise Canceling:capture_1"/>
-   <input node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:input_MONO"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Firefox" port="Firefox:output_FL"/>
-   <input node="OBS_Web" port="OBS_Web:in_1"/>
+   <input node="OBS_System_Audio" port="OBS_System_Audio:in_1"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_MONO"/>
+   <input node="SpotifyPassthrough Audio/Sink sink" port="SpotifyPassthrough Audio/Sink sink:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Discord_Audio" port="Discord_Audio:monitor_MONO"/>
+   <input node="Nari Ultimate Chat" port="Razer Nari Ultimate:playback_MONO"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Chromium" port="Chromium:output_FL"/>
+   <input node="OBS_Discord" port="OBS_Discord:in_2"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="jack_mixer" port="jack_mixer:System Audio Out L"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Music" port="Music:monitor_FL"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Game" port="Game:monitor_FL"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="InnoGear UC016 Mono" port="InnoGear UC016:capture_MONO"/>
+   <input node="Noise Canceling source" port="Noise Canceling source:input_MONO"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="spotify" port="spotify:output_FR"/>
+   <input node="jack_mixer" port="jack_mixer:Music R"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_FL"/>
+   <input node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="System_Audio" port="System_Audio:monitor_FL"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Music" port="Music:monitor_FR"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="VLC media player (LibVLC 3.0.18)" port="VLC media player (LibVLC 3.0.18):output_FR"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="jack_mixer" port="jack_mixer:Input Out L"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="spotify" port="spotify:output_FR"/>
+   <input node="jack_mixer" port="jack_mixer:Input R"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Firefox" port="Firefox:output_FL"/>
+   <input node="SpotifyPassthrough Audio/Sink sink" port="SpotifyPassthrough Audio/Sink sink:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:monitor_FR"/>
+   <input node="OBS_Discord" port="OBS_Discord:in_1"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="InnoGear UC016 Mono" port="InnoGear UC016:capture_MONO"/>
+   <input node="jack_mixer" port="jack_mixer:Mic"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="jack_mixer" port="jack_mixer:Discord Voice Out"/>
+   <input node="Nari Ultimate Chat" port="Razer Nari Ultimate:playback_MONO"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="jack_mixer" port="jack_mixer:Input Out R"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:monitor_FL"/>
+   <input node="jack_mixer" port="jack_mixer:Discord Voice"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="blackdesert64.exe" port="blackdesert64.exe:output_FL"/>
+   <input node="Game" port="Game:playback_FL"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_MONO"/>
+   <input node="OBS_Discord" port="OBS_Discord:in_2"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="blackdesert64.exe" port="blackdesert64.exe:output_FR"/>
+   <input node="Game" port="Game:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="VLC media player (LibVLC 3.0.18)" port="VLC media player (LibVLC 3.0.18):output_FR"/>
    <input node="SpotifyPassthrough Audio/Sink sink" port="SpotifyPassthrough Audio/Sink sink:playback_FR"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_MONO"/>
-   <input node="Discord_Audio" port="Discord_Audio:playback_MONO"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Firefox" port="Firefox:output_FL"/>
-   <input node="System Audio/Sink sink" port="System Audio/Sink sink:playback_FL"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_MONO"/>
-   <input node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:playback_FR"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="spotify" port="spotify:output_FL"/>
-   <input node="jack_mixer" port="jack_mixer:Input L"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_FR"/>
-   <input node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:playback_FR"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="System Audio/Sink sink" port="System Audio/Sink sink:monitor_FR"/>
-   <input node="jack_mixer" port="jack_mixer:System Audio R"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="jack_mixer" port="jack_mixer:Music Out L"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="VLC media player (LibVLC 3.0.18)" port="VLC media player (LibVLC 3.0.18):output_FL"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
+   <input node="OBS_Discord" port="OBS_Discord:in_1"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="jack_mixer" port="jack_mixer:System Audio Out R"/>
@@ -146,48 +162,48 @@
    <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_MONO"/>
-   <input node="OBS_Discord" port="OBS_Discord:in_1"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
    <output node="Firefox" port="Firefox:output_FR"/>
    <input node="OBS_Web" port="OBS_Web:in_2"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="spotify" port="spotify:output_FL"/>
-   <input node="jack_mixer" port="jack_mixer:Music L"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="InnoGear UC016 Mono" port="InnoGear UC016:capture_MONO"/>
    <input node="Noise Canceling" port="Noise Canceling:input_MONO"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="jack_mixer" port="jack_mixer:Discord Voice Out"/>
-   <input node="Nari Ultimate Chat" port="Razer Nari Ultimate:playback_MONO"/>
+   <output node="spotify" port="spotify:output_FL"/>
+   <input node="jack_mixer" port="jack_mixer:Music L"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="InnoGear UC016 Mono" port="InnoGear UC016:capture_MONO"/>
-   <input node="jack_mixer" port="jack_mixer:Mic"/>
+   <output node="jack_mixer" port="jack_mixer:Music Out L"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:monitor_FR"/>
-   <input node="OBS_Discord" port="OBS_Discord:in_1"/>
-  </item>
-  <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="jack_mixer" port="jack_mixer:Input Out R"/>
-   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
+   <output node="VLC media player (LibVLC 3.0.18)" port="VLC media player (LibVLC 3.0.18):output_FL"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FL"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
    <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_MONO"/>
-   <input node="OBS_Discord" port="OBS_Discord:in_2"/>
+   <input node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:playback_FR"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:monitor_FL"/>
-   <input node="jack_mixer" port="jack_mixer:Discord Voice"/>
+   <output node="Firefox" port="Firefox:output_FL"/>
+   <input node="System Audio/Sink sink" port="System Audio/Sink sink:playback_FL"/>
   </item>
   <item node-type="pipewire" port-type="pipewire-audio">
-   <output node="VLC media player (LibVLC 3.0.18)" port="VLC media player (LibVLC 3.0.18):output_FR"/>
-   <input node="SpotifyPassthrough Audio/Sink sink" port="SpotifyPassthrough Audio/Sink sink:playback_FR"/>
+   <output node="Game" port="Game:monitor_FR"/>
+   <input node="Nari Ultimate Game" port="USB Audio #1:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="WEBRTC VoiceEngine" port="WEBRTC VoiceEngine:output_FR"/>
+   <input node="Discord Audio/Sink sink" port="Discord Audio/Sink sink:playback_FR"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="spotify" port="spotify:output_FL"/>
+   <input node="jack_mixer" port="jack_mixer:Input L"/>
+  </item>
+  <item node-type="pipewire" port-type="pipewire-audio">
+   <output node="System Audio/Sink sink" port="System Audio/Sink sink:monitor_FR"/>
+   <input node="jack_mixer" port="jack_mixer:System Audio R"/>
   </item>
  </items>
 </patchbay>
