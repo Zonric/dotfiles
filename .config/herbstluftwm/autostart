@@ -27,6 +27,8 @@ qpwgraph &
 sinkset &
 discord_launcher &
 steam &
+unclutter --timeout 15 --ignore-scrolling &
+xmodmap ~/.config/xmodmap &
 #spotify-launcher &
 #obs &
 

@@ -17,7 +17,7 @@ hc() { "${herbstclient_command[@]:-herbstclient}" "$@" ;}
 
 if [ $1 == "sysadmin" ]; then
     WIDTH_PERC=95
-    HEIGHT_PIXELS=375
+    HEIGHT_PIXELS=600
 elif [ $1 == "audio" ]; then
     WIDTH_PERC=25
     HEIGHT_PIXELS=500

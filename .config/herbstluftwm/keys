@@ -37,12 +37,12 @@ hc keybind $MOD-s spawn ~/.config/rofi/scripts/switch_sinks.sh
 ###--------------------------###
 ###---   Screenshooting   ---###
 ###--------------------------###
-hc keybind Print spawn zshot full
-hc keybind Control-Print spawn zshot select
-hc keybind Alt-Print spawn \
+hc keybind Release-Print spawn zshot full
+hc keybind Release-Control-Print spawn zshot select
+hc keybind Release-Alt-Print spawn \
 	scrot -ub -F ~/pictures/screenshots/Window_%s_'$w'x'$h'.png -e 'xclip -selection clipboard -t image/png -i $f'
 
-hc keybind Shift-Print chain , \
+hc keybind Release-Shift-Print chain , \
 	spawn scrot -M 0 -F ~/pictures/screenshots/Mon-0_%s_'$w'x'$h'.png , \
 	spawn scrot -M 1 -F ~/pictures/screenshots/Mon-1_%s_'$w'x'$h'.png , \
 	spawn scrot -M 2 -F ~/pictures/screenshots/Mon-2_%s_'$w'x'$h'.png
@@ -51,20 +51,20 @@ hc keybind Shift-Print chain , \
 ###---   Split   ---###
 ###-----------------###
 hc keybind $MOD-p chain ,\
-	split left 0.3 ,\
-	focus left
+	split right 0.5 ,\
+	focus right
 hc keybind $MOD-o chain ,\
-	split right	0.7 ,\
+	split right	0.65 ,\
 	focus right
 hc keybind $MOD-Shift-o chain , \
-	split left 0.3 , \
+	split left 0.35 , \
 	focus left
 hc keybind $MOD-u chain , \
-	split bottom 0.7 , \
+	split bottom 0.65 , \
 	focus down
 hc keybind $MOD-Shift-u chain , \
-	split top 0.3 , \
-	focus up
+	split bottom 0.80 , \
+	focus down
 
 ###-----------------###
 ###---   Focus   ---###
@@ -126,11 +126,17 @@ hc keybind $MOD-Control-space split explode
 ###--------------------------###
 ###---   Audio Controls   ---###
 ###--------------------------###
+SETSINK="System"
+READSINK="/home/zonric/.config/herbstluftwm/sink"
+if [ -f "$READSINK" ]; then
+	$SETSINK=$(< $READSINK)
+fi
+
+hc keybind XF86AudioMute spawn pactl set-sink-mute $SETSINK toggle
+hc keybind $MOD-XF86AudioMute spawn ~/.config/herbstluftwm/scripts/rofi_getsink.sh
 # My audio wheel is reversed
-GETSINK=$(pamixer --list-sinks | grep "System" | awk '{ print $1 }')
-hc keybind XF86AudioMute spawn pamixer --sink $GETSINK -t
-hc keybind XF86AudioLowerVolume spawn pamixer --sink $GETSINK -i 5 # Raise Volume
-hc keybind XF86AudioRaiseVolume spawn pamixer --sink $GETSINK -d 5 # Lower Volume
+hc keybind XF86AudioLowerVolume spawn pactl set-sink-volume $SETSINK +5% # Raise Volume
+hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume $SETSINK -5% # Lower Volume
 hc keybind XF86AudioPrev spawn playerctl previous -p spotify,%any
 hc keybind XF86AudioPlay spawn playerctl play-pause -p spotify,%any
 hc keybind XF86AudioNext spawn playerctl next -p spotify,%any
@@ -169,8 +175,8 @@ hc keybind "$MOD-Shift-grave" use_previous
 ###---------------------------###
 hc add sysadmin
 hc add audio
-hc keybind $MOD-grave spawn scratchpad sysadmin
-hc keybind $MOD-Shift-XF86AudioMute spawn scratchpad audio
+hc keybind $MOD-grave spawn ~/.config/herbstluftwm/scripts/scratchpad.sh sysadmin
+hc keybind $MOD-Shift-XF86AudioMute spawn ~/.config/herbstluftwm/scripts/scratchpad.sh audio
 
 ###--------------------###
 ###---   Tag Lock   ---###

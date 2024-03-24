@@ -14,12 +14,16 @@ lock_tag_to_monitor() {
 	hc chain , new_attr string tags.by-name."$1".my_monitor , set_attr tags.by-name."$1".my_monitor "$2"
 }
 #
-lock_tag_to_monitor 10 0
 lock_tag_to_monitor 1 0
-lock_tag_to_monitor 2 1
-# lock_tag_to_monitor 7 2
+lock_tag_to_monitor 2 0
+lock_tag_to_monitor 3 0
+lock_tag_to_monitor 4 1
+lock_tag_to_monitor 5 1
+lock_tag_to_monitor 6 1
+lock_tag_to_monitor 7 2
 lock_tag_to_monitor 8 2
 lock_tag_to_monitor 9 2
+lock_tag_to_monitor 10 0
 
 hc foreach T tags.by-name. sprintf ATTR '%c.tiling.root.algorithm' T set_attr ATTR horizontal
 
@@ -95,7 +99,7 @@ hc rule class="discord" tag=9
 #'
 hc rule class="steam" tag=10
 # Black Desert Patcher
-hc rule class="steam_app_582660" tag=10 floating=on floatplacement=center
+hc rule instance="steam_app_582660" tag=10 floating=on floatplacement=center
 #hc rule instance="(Zonric) Wurm Unlimited " fullscreen=on
 hc rule instance="com.wurmonline.client.launcherfx.WurmMain" fullscreen=on
 
@@ -110,3 +114,4 @@ hc set tree_style '╾│ ├└╼─┐'
 # Unlock #
 #--------#
 hc unlock
+
