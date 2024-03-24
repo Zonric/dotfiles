@@ -28,7 +28,7 @@ polybar_launcher &
 $HOME/.fehbg
 #dunst &
 qpwgraph &
-sinkset &
+startsinks &
 discord_launcher &
 steam &
 unclutter --timeout 15 --ignore-scrolling &
