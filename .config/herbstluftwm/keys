@@ -126,10 +126,11 @@ hc keybind $MOD-Control-space split explode
 ###--------------------------###
 ###---   Audio Controls   ---###
 ###--------------------------###
-SETSINK="System"
-READSINK="/home/zonric/.config/herbstluftwm/sink"
-if [ -f "$READSINK" ]; then
+READSINK="/home/zonric/.config/herbstluftwm/setsink"
+if [[ -f $READSINK && $(cat $READSINK | wc -l) -gt 0 ]]; then
 	$SETSINK=$(< $READSINK)
+else
+	SETSINK="@DEFAULT_SINK@"
 fi
 
 hc keybind XF86AudioMute spawn pactl set-sink-mute $SETSINK toggle
@@ -167,8 +168,6 @@ for i in "${!TAGNAMES[@]}" ; do
 		hc keybind "$MOD-Shift-$KEY" move_index "$i"
 	fi
 done
-# Switch to previously viewd tag.
-hc keybind "$MOD-Shift-grave" use_previous
 
 ###---------------------------###
 ###---   Add scratchpads   ---###
@@ -176,6 +175,8 @@ hc keybind "$MOD-Shift-grave" use_previous
 hc add sysadmin
 hc add audio
 hc keybind $MOD-grave spawn ~/.config/herbstluftwm/scripts/scratchpad.sh sysadmin
+hc keybind $MOD-Shift-grave move sysadmin
+
 hc keybind $MOD-Shift-XF86AudioMute spawn ~/.config/herbstluftwm/scripts/scratchpad.sh audio
 
 ###--------------------###
