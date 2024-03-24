@@ -36,6 +36,7 @@ hc rule class="Thunar" floating=on
 hc rule class="QjackCtl" floating=on
 hc rule class="kitty.float" floating=on
 hc rule instance="kvantummanager" floating=on
+hc rule instance="feh" class="feh" floating=on
 #hc rule instance="calibre-ebook-viewer" floating=on
 
 hc rule class="Lutris" floating=on

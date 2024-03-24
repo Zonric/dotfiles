@@ -8,7 +8,7 @@ Configs: ~/.config/herbstluftwm/
 ---
 
 ### Polybar
-<img title="Polybar Screen Shot" alt="Polybar" src="./.dotfiles/pictures/polybar.png">
+<img title="Polybar Screen Shot" alt="Polybar" src="./.dotfiles/pictures/polybar_update_24-03-24.png">
 
 ---
 
