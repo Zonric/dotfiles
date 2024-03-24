@@ -28,6 +28,15 @@ lock_tag_to_monitor 10 0
 hc foreach T tags.by-name. sprintf ATTR '%c.tiling.root.algorithm' T set_attr ATTR horizontal
 
 #---------------#
+# Layouts       #
+#---------------#
+# setlayout {of_tag} {layout}
+setlayout() {
+    hc chain , use $1 , set_layout $2 , use_previous
+}
+setlayout 8 max
+
+#---------------#
 # Floating Apps #
 #---------------#
 hc rule class="dev" floating=on

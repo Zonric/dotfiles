@@ -7,9 +7,13 @@ hc() {
 hc emit_hook reload
 xsetroot -solid '#003333'
 
+source ~/.config/herbstluftwm/settings
 source ~/.config/herbstluftwm/keys
 source ~/.config/herbstluftwm/rules
 source ~/.config/herbstluftwm/theme
+#-- if themeOVERRIDE exists source it after theme
+OVERRIDE=~/.config/herbstluftwm/themeOVERRIDE
+[[ -f $OVERRIDE ]] && source $OVERRIDE
 
 hc detect_monitors
 for monitor in $(hc list_monitors | cut -d':' -f1); do
