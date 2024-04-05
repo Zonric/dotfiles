@@ -32,7 +32,7 @@ hc foreach T tags.by-name. sprintf ATTR '%c.tiling.root.algorithm' T set_attr AT
 #---------------#
 # setlayout {of_tag} {layout}
 setlayout() {
-    hc chain , use $1 , set_layout $2 , use_previous
+	hc chain , use "$1" , set_layout "$2" , use_previous
 }
 setlayout 8 max
 
@@ -43,7 +43,6 @@ hc rule class="dev" floating=on
 hc rule class="debug" floating=on
 hc rule class="Thunar" floating=on
 hc rule class="QjackCtl" floating=on
-hc rule class="kitty.float" floating=on
 hc rule instance="kvantummanager" floating=on
 hc rule instance="feh" class="feh" floating=on
 #hc rule instance="calibre-ebook-viewer" floating=on
@@ -96,20 +95,18 @@ hc rule instance="drkonqi" class="drkonqi" floating=on
 #--------------#
 # General Apps #
 #--------------#
-hc rule class="Jack_mixer" tag="audio"
-
 hc rule class="obs" tag=7
+# Audio Apps
+hc rule class="Jack_mixer" tag="audio"
+hc rule class="qpwgraph" tag=8
+hc rule instance="sayonara" tag=8
 hc rule class="Spotify" tag=8
-hc rule class="discord" tag=9
+# Communication Apps
+hc rule class="SchildiChat" tag=9
 
 #-------------#
 # Steam/Games #
 #-------------#
-#hc load 10 '
-#(split horizontal:0.850000:0
-#(clients horizontal:0)
-#(clients vertical:0))
-#'
 hc rule class="steam" tag=10
 # Black Desert Patcher
 hc rule instance="steam_app_582660" tag=10 floating=on floatplacement=center

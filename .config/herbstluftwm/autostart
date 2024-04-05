@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+# shellcheck disable=SC1091
 hc() {
 	herbstclient "$@"
 }
@@ -13,26 +14,33 @@ source ~/.config/herbstluftwm/rules
 source ~/.config/herbstluftwm/theme
 #-- if themeOVERRIDE exists source it after theme
 OVERRIDE=~/.config/herbstluftwm/themeOVERRIDE
-[[ -f $OVERRIDE ]] && source $OVERRIDE
+[ -f $OVERRIDE ] && . $OVERRIDE
 
 hc detect_monitors
 for monitor in $(hc list_monitors | cut -d':' -f1); do
-	hc pad $monitor 25
+	hc pad "$monitor" 25
 done
+
+hc focus_monitor 2
+hc use 9
+hc focus_monitor 1
+hc use 4
+hc focus_monitor 0
+hc use 1
 
 #-----------#
 # Autostart #
 #-----------#
-picom &
-polybar_launcher &
-$HOME/.fehbg
-#dunst &
-qpwgraph &
-startsinks &
-discord_launcher &
-steam &
-unclutter --timeout 15 --ignore-scrolling &
-xmodmap ~/.config/xmodmap &
+picom & # Compostior
+polybar_launcher & # Info panels
+source "$HOME"/.fehbg
+qpwgraph & # Pipewire Patchboard
+startsinks & # Audio Sinks
+steam & # Games
+schildichat-desktop &
+#sayonara & # Music player -- might need to replace, might be taking over XF86Audio buttons.
+unclutter --timeout 15 --ignore-scrolling & # hide idle mouse pointer
+xmodmap ~/.config/xmodmap & # Key remaps
 #spotify-launcher &
 #obs &
 

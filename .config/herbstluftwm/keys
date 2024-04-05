@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# shellcheck disable=SC1011,SC1090,SC1091,SC2016,SC2026,SC3009,SC3030,SC3046,SC3053,SC3054,SC3055
 hc() {
 		herbstclient "$@"
 }
@@ -23,13 +24,13 @@ hc mousebind $MOD-Button3 resize
 ###--------------------###
 ###---   Spawning   ---###
 ###--------------------###
-hc keybind $MOD-Return spawn ${TERMINAL}
-hc keybind $MOD-w spawn ${BROWSER:-firefox}
-hc keybind $MOD-Shift-w spawn ${BROWSER} -private-window
+hc keybind $MOD-Return spawn "${TERMINAL:-wezterm}"
+hc keybind $MOD-w spawn "${BROWSER:-firefox}"
+hc keybind $MOD-Shift-w spawn "${BROWSER}" -private-window
 #hc keybind $MOD-Control-w spawn ${BROWSER} --tor
 hc keybind $MOD-c spawn rofi -show calc -no-show-match -no-sort
 hc keybind $MOD-e spawn kitty --class kitty.float -e ranger
-hc keybind $MOD-Shift-e spawn ${VISUALFILEMAN:-thunar}
+hc keybind $MOD-Shift-e spawn "${VISUALFILEMAN:-thunar}"
 hc keybind $MOD-r spawn rofi -show run
 hc keybind $MOD-Home spawn feh --no-xinerama --bg-scale --randomize ~/Pictures/Wallpapers
 hc keybind $MOD-s spawn ~/.config/rofi/scripts/switch_sinks.sh
@@ -127,17 +128,23 @@ hc keybind $MOD-Control-space split explode
 ###---   Audio Controls   ---###
 ###--------------------------###
 READSINK="/home/zonric/.config/herbstluftwm/setsink"
-if [[ -f $READSINK && $(cat $READSINK | wc -l) -gt 0 ]]; then
-	$SETSINK=$(< $READSINK)
+if [ -f $READSINK ] && [ "$(cat $READSINK | wc -l)" -gt 0 ]; then
+	SETSINK=$(cat $READSINK)
 else
 	SETSINK="@DEFAULT_SINK@"
 fi
 
-hc keybind XF86AudioMute spawn pactl set-sink-mute $SETSINK toggle
+###---  Backup Audio Controls   ---###
+hc keybind $MOD-End spawn ~/.config/herbstluftwm/scripts/rofi_getsink.sh
+hc keybind $MOD-Up spawn pactl set-sink-volume "$SETSINK" +5% # Raise Volume
+hc keybind $MOD-Down spawn pactl set-sink-volume "$SETSINK" -5% # Lower Volume
+
+
 hc keybind $MOD-XF86AudioMute spawn ~/.config/herbstluftwm/scripts/rofi_getsink.sh
+hc keybind XF86AudioMute spawn pactl set-sink-mute "$SETSINK" toggle
 # My audio wheel is reversed
-hc keybind XF86AudioLowerVolume spawn pactl set-sink-volume $SETSINK +5% # Raise Volume
-hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume $SETSINK -5% # Lower Volume
+hc keybind XF86AudioLowerVolume spawn pactl set-sink-volume "$SETSINK" +5% # Raise Volume
+hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume "$SETSINK" -5% # Lower Volume
 hc keybind XF86AudioPrev spawn playerctl previous -p spotify,%any
 hc keybind XF86AudioPlay spawn playerctl play-pause -p spotify,%any
 hc keybind XF86AudioNext spawn playerctl next -p spotify,%any
@@ -162,7 +169,7 @@ hc rename default "${TAGNAMES[0]}" || true
 for i in "${!TAGNAMES[@]}" ; do
 	hc add "${TAGNAMES[$i]}"
 	KEY="${TAGKEYS[$i]}"
-	if ! [ -z "$KEY" ] ; then
+	if [ -n "$KEY" ] ; then
 		hc keybind "$MOD-$KEY" chain , silent substitute M tags."$i".my_monitor focus_monitor M , use_index "$i"
 #		hc keybind "$MOD-$KEY" use_index "$i"
 		hc keybind "$MOD-Shift-$KEY" move_index "$i"

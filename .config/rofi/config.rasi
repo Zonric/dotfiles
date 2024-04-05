@@ -18,6 +18,6 @@ listview {
 }
 
 window {
-  width: 10%;
-  height: 30%;
+  width: 20%;
+  height: 35%;
 }

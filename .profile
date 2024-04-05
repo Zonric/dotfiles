@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-
+# shellcheck disable=SC1091,SC2155,SC2086
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
-export MAKEFLAGS="-j$(expr $(nproc))"
+export MAKEFLAGS="-j$(nproc)"
 
 export EDITOR=nvim
 export VISUAL=nvim
-export TERMINAL=alacritty
+export TERMINAL=wezterm
 export BROWSER=firefox
 export FILEMAN=ranger
 export VISUALFILEMAN=thunar
