@@ -20,3 +20,12 @@ Configs: ~/.config/herbstluftwm/
 **Files need to be moved to /etc/X11/xorg.conf.d/**
 
 `sudo cp ~/.config/xorg/*.conf /etc/X11/xorg.conf.d/`
+
+---
+
+## Applications:
+- playerctl
+- unclutter
+- rofi
+- ranger
+

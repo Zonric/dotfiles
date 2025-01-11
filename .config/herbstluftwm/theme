@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # shellcheck disable=SC2086
 
-source ~/.config/herbstluftwm/themes/active_colors
+source ~/.config/herbstluftwm/color_scheme/active
 
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1

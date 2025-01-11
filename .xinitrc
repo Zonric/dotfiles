@@ -46,5 +46,8 @@ case $session in
   ;;
 esac
 
-source ~/.xprofile
+[ -f /etc/xprofile ] && source /etc/xprofile
+[ -f ~/.xprofile ] && source ~/.xprofile
+
 exec $CFG_WM_CMD
+

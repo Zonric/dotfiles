@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-source ~/.config/herbstluftwm/themes/active_colors
+source ~/.config/herbstluftwm/color_scheme/active
 
 fcolor() {
 	echo -n "%{F$1}"
@@ -10,6 +10,9 @@ onclick() {
 }
 
 monitor=${1:-0}
+displaytitle=${2:-0}
+displayother=${3:-0}
+displayempty=${4:-0}
 tags=( $(herbstclient tag_status $monitor) )
 separator=""
 for i in ${tags[@]} ; do
@@ -23,63 +26,88 @@ for i in ${tags[@]} ; do
 		"6") title=" 6:" icon="󱁴" ;;
 		"7") title=" 7:" icon="" ;;
 		"8") title=" 8:" icon="" ;;
-		"9") title=" 9:" icon="󰙯" ;;
+		"9") title=" 9:" icon="󱆗" ;;
 		"10") title=" 0:" icon="" ;;
-		"scratchpad") title=" ?:" icon="" ;;
+		"audio") title=" -:" icon="" ;;
+		"scratchpad") title=" =:" icon="" ;;
 		"sysadmin") title=" ~:" icon="" ;;
-		"audio") title=" Audio:" icon="" ;;
 		*) title=" ?:" icon="華";;
 	esac
 	case ${i:0:1} in
-		# --- Colors: gary [444444] white [ffffff] light green [66ff66] darkgreen [119966] light teal [33CCFF] dark teal [669999] yellow [FF00FF]
 		# --- Tag is not displayed on a monitor
-		'.') # EMPTY (Dark Gray) [444444]
+		'.') # EMPTY
 			fcolor $FOREGROUND_ALT
 			onclick $monitor ${i:1}
-			#echo -n "$title$icon %{A}"
+			if [[ displayempty -gt 0 ]]; then
+				if [[ displaytitle -gt 0 ]]; then
+					echo -n "$title"
+				fi
+				echo -n "$icon %{A}"
+			fi
 		;;
-		':') # NOT EMPTY (White) [FFFFFF]
+		':') # NOT EMPTY
 			fcolor $FOREGROUND
 			onclick $monitor ${i:1}
-			echo -n "$title$icon %{A}"
+			if [[ displaytitle -gt 0 ]]; then
+				echo -n "$title"
+			fi
+			echo -n "$icon %{A}"
 		;;
-
 		# --- Tag is viewed on specified MONITOR
 		'#') # Focused.
 			fcolor $ACTIVE
 			onclick $monitor ${i:1}
-			echo -n "$title$icon %{A}"
+			if [[ displaytitle -gt 0 ]]; then
+				echo -n "$title"
+			fi
+			echo -n "$icon %{A}"
 		;;
 		'+') # NOT focused
 			fcolor $ACTIVE_ALT
 			onclick $monitor ${i:1}
-			echo -n "$title$icon %{A}"
+			if [[ displaytitle -gt 0 ]]; then
+				echo -n "$title"
+			fi
+			echo -n "$icon %{A}"
 		;;
-
 		# --- Tag is viewed on different monitor
-		'%') # and is FOCUSED (Light Blue Teal) [33CCFF]
+		'%') # and is FOCUSED
 			fcolor $ACTIVE
 			onclick $monitor ${i:1}
-			#echo -n "$title$icon %{A}"
+			if [[ displayother -gt 0 ]]; then
+				if [[ displaytitle -gt 0 ]]; then
+					echo -n "$title"
+				fi
+				echo -n "$icon %{A}"
+			fi
 		;;
-		'-') # and is NOT focused (Dark Blue/Dark Teal) [669999]
+		'-') # and is NOT focused
 			fcolor $ACTIVE_ALT
 			onclick $monitor ${i:1}
-			#echo -n "$title$icon %{A}"
+			if [[ displayother -gt 0 ]]; then
+				if [[ displaytitle -gt 0 ]]; then
+					echo -n "$title"
+				fi
+				echo -n "$icon %{A}"
+			fi
 		;;
-
 		# --- Tag contains Urgent Window!
 		'!')
 			fcolor $URGENT
 			onclick $monitor ${i:1}
-			echo -n "$title$icon %{A}"
+			if [[ displaytitle -gt 0 ]]; then
+				echo -n "$title"
+			fi
+			echo -n "$icon %{A}"
 		;;
-
-		# --- Somethins gone wrong... Set font yellow			
+		# --- Somethins gone wrong...
 		*)
 			fcolor $ERROR
 			onclick $monitor ${i:1}
-			echo -n "$title$icon %{A}"
+			if [[ displaytitle -gt 0 ]]; then
+				echo -n "$title"
+			fi
+			echo -n "$icon %{A}"
 		;;
 	esac
 done

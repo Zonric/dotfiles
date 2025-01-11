@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
+export QT_STYLE_OVERRIDE=kvantum
+
 xsetroot -cursor_name left-ptr
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 [ -f $XDG_CONFIG_HOME/wacom/config ] && source $XDG_CONFIG_HOME/wacom/config
-
-#source $XDG_CONFIG_HOME/monitors/config.sh
 

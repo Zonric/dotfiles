@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 # shellcheck disable=SC1011,SC1090,SC1091,SC2016,SC2026,SC3009,SC3030,SC3046,SC3053,SC3054,SC3055
-hc() {
-		herbstclient "$@"
-}
+###--------------------###
+###---  KEYBINDING  ---###
+###---    ./keys    ---###
+###--------------------###
 
 ###--------------------###
 ###---   Settings   ---###
@@ -10,7 +11,6 @@ hc() {
 hc keyunbind --all
 hc mouseunbind --all
 
-# if you have a super key you will be much happier with Mod set to Mod4
 #MOD=Mod1		# Use Alt as the main modifier
 MOD=Mod4   # Use the super key as the main modifier
 
@@ -24,16 +24,16 @@ hc mousebind $MOD-Button3 resize
 ###--------------------###
 ###---   Spawning   ---###
 ###--------------------###
-hc keybind $MOD-Return spawn "${TERMINAL:-wezterm}"
-hc keybind $MOD-w spawn "${BROWSER:-firefox}"
-hc keybind $MOD-Shift-w spawn "${BROWSER}" -private-window
-#hc keybind $MOD-Control-w spawn ${BROWSER} --tor
+#hc keybind $MOD-Return spawn "${TERMINAL:-wezterm}"
+hc keybind $MOD-Home spawn feh --no-xinerama --bg-scale --randomize ~/pictures/wallpapers
+hc keybind $MOD-Return spawn "${TERMINAL:-wezterm}" start --class=Terminal
 hc keybind $MOD-c spawn rofi -show calc -no-show-match -no-sort
-hc keybind $MOD-e spawn kitty --class kitty.float -e ranger
-hc keybind $MOD-Shift-e spawn "${VISUALFILEMAN:-thunar}"
+hc keybind $MOD-e spawn "${VISUALFILEMAN:-thunar}"
 hc keybind $MOD-r spawn rofi -show run
-hc keybind $MOD-Home spawn feh --no-xinerama --bg-scale --randomize ~/Pictures/Wallpapers
 hc keybind $MOD-s spawn ~/.config/rofi/scripts/switch_sinks.sh
+hc keybind $MOD-w spawn "${BROWSER:-firefox}"
+
+hc keybind $MOD-Shift-w spawn "${BROWSER}" -private-window
 
 ###--------------------------###
 ###---   Screenshooting   ---###
@@ -49,31 +49,8 @@ hc keybind Release-Shift-Print chain , \
 	spawn scrot -M 2 -F ~/pictures/screenshots/Mon-2_%s_'$w'x'$h'.png
 
 ###-----------------###
-###---   Split   ---###
-###-----------------###
-hc keybind $MOD-p chain ,\
-	split right 0.5 ,\
-	focus right
-hc keybind $MOD-o chain ,\
-	split right	0.65 ,\
-	focus right
-hc keybind $MOD-Shift-o chain , \
-	split left 0.35 , \
-	focus left
-hc keybind $MOD-u chain , \
-	split bottom 0.65 , \
-	focus down
-hc keybind $MOD-Shift-u chain , \
-	split bottom 0.80 , \
-	focus down
-
-###-----------------###
 ###---   Focus   ---###
 ###-----------------###
-hc keybind $MOD-Left 	focus left
-hc keybind $MOD-Down 	focus down
-hc keybind $MOD-Up 		focus up
-hc keybind $MOD-Right focus right
 hc keybind $MOD-h 		focus left
 hc keybind $MOD-j 		focus down
 hc keybind $MOD-k 		focus up
@@ -109,52 +86,71 @@ hc keybind $MOD-Alt-h 		resize left +$RESIZESTEP
 hc keybind $MOD-Alt-j 		resize down +$RESIZESTEP
 hc keybind $MOD-Alt-k 		resize up +$RESIZESTEP
 hc keybind $MOD-Alt-l 		resize right +$RESIZESTEP
-hc keybind $MOD-Alt-Left 	resize left +$RESIZESTEP
-hc keybind $MOD-Alt-Down 	resize down +$RESIZESTEP
-hc keybind $MOD-Alt-Up 		resize up +$RESIZESTEP
-hc keybind $MOD-Alt-Right resize right +$RESIZESTEP
 
 ###-------------------------###
 ###---   Display Modes   ---###
 ###-------------------------###
-#hc keybind $MOD-r remove
 hc keybind $MOD-f set_attr clients.focus.floating toggle
 hc keybind $MOD-Shift-f fullscreen toggle
 hc keybind $MOD-space cycle_layout +1
 hc keybind $MOD-Shift-space cycle_layout -1
+	 ###-------------------###
+	 ###---    Split    ---###
+	 ###-------------------###
+# Explode last window into a frame
 hc keybind $MOD-Control-space split explode
+# Open new vertical splits
+# Right
+hc keybind $MOD-o chain ,\
+	split right	0.50 ,\
+	focus right
+# Left
+hc keybind $MOD-Shift-o chain , \
+	split right 0.75 , \
+	focus right
+# Under split horizontally
+# 25% Bottom
+hc keybind $MOD-u chain , \
+	split bottom 0.75 , \
+	focus down
+# 50% Bottom
+hc keybind $MOD-Shift-u chain , \
+	split bottom 0.50 , \
+	focus down
 
 ###--------------------------###
 ###---   Audio Controls   ---###
 ###--------------------------###
-READSINK="/home/zonric/.config/herbstluftwm/setsink"
+READSINK="~/.config/herbstluftwm/setsink"
 if [ -f $READSINK ] && [ "$(cat $READSINK | wc -l)" -gt 0 ]; then
 	SETSINK=$(cat $READSINK)
 else
 	SETSINK="@DEFAULT_SINK@"
 fi
 
+###---   Audio Mute Control   ---###
+#hc keybind XF86AudioMute spawn pactl set-sink-mute "$SETSINK" toggle
+#hc keybind $MOD-XF86AudioMute spawn ~/.config/herbstluftwm/scripts/rofi_getsink.sh
+###---   My audio wheel is reversed   ---###
+hc keybind XF86AudioLowerVolume spawn pactl set-sink-volume "$SETSINK" +5% # Raise Volume
+hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume "$SETSINK" -5% # Lower Volume
+###--- Main Audio Controls   ---###
+hc keybind XF86AudioPrev spawn playerctl previous -p sayonara,%any
+hc keybind XF86AudioPlay spawn playerctl play-pause -p sayonara,%any
+hc keybind XF86AudioNext spawn playerctl next -p sayonara,%any
 ###---  Backup Audio Controls   ---###
 hc keybind $MOD-End spawn ~/.config/herbstluftwm/scripts/rofi_getsink.sh
 hc keybind $MOD-Up spawn pactl set-sink-volume "$SETSINK" +5% # Raise Volume
 hc keybind $MOD-Down spawn pactl set-sink-volume "$SETSINK" -5% # Lower Volume
 
-
-hc keybind $MOD-XF86AudioMute spawn ~/.config/herbstluftwm/scripts/rofi_getsink.sh
-hc keybind XF86AudioMute spawn pactl set-sink-mute "$SETSINK" toggle
-# My audio wheel is reversed
-hc keybind XF86AudioLowerVolume spawn pactl set-sink-volume "$SETSINK" +5% # Raise Volume
-hc keybind XF86AudioRaiseVolume spawn pactl set-sink-volume "$SETSINK" -5% # Lower Volume
-hc keybind XF86AudioPrev spawn playerctl previous -p spotify,%any
-hc keybind XF86AudioPlay spawn playerctl play-pause -p spotify,%any
-hc keybind XF86AudioNext spawn playerctl next -p spotify,%any
-
 ###------------------------------------###
-###---   Reload/Restart/Kill/Exit   ---###
+###---   Close/Remove/Quit/Reload   ---###
 ###------------------------------------###
+# close window or remove frame
 hc keybind $MOD-q close_or_remove
-hc keybind $MOD-Shift-q close
+# quit herbstluftwm
 hc keybind $MOD-Control-Shift-q quit
+# live reload herbstluftwm configs
 hc keybind $MOD-Shift-r reload
 
 ###----------------###
@@ -181,24 +177,28 @@ done
 ###---------------------------###
 hc add sysadmin
 hc add audio
+hc keybind $MOD-minus spawn ~/.config/herbstluftwm/scripts/scratchpad.sh audio
 hc keybind $MOD-grave spawn ~/.config/herbstluftwm/scripts/scratchpad.sh sysadmin
+hc keybind $MOD-equal spawn ~/.config/herbstluftwm/scripts/scratchpad.sh
+hc keybind $MOD-Shift-minus move audio
 hc keybind $MOD-Shift-grave move sysadmin
-
-hc keybind $MOD-Shift-XF86AudioMute spawn ~/.config/herbstluftwm/scripts/scratchpad.sh audio
+hc keybind $MOD-Shift-equal move scratchpad
 
 ###--------------------###
 ###---   Tag Lock   ---###
+###---              ---###
+###---    Unused    ---###
 ###--------------------###
-hc keybind $MOD-t chain \
-	, new_attr string tags.focus.my_monitor \
-	, substitute M monitors.focus.index set_attr tags.focus.my_monitor M \
-	, try and \
-		. compare monitors.focus.name != "" \
-		. substitute M monitors.focus.name \
-				set_attr tags.focus.my_monitor M
+#hc keybind $MOD-t chain \
+#	, new_attr string tags.focus.my_monitor \
+#	, substitute M monitors.focus.index set_attr tags.focus.my_monitor M \
+#	, try and \
+#		. compare monitors.focus.name != "" \
+#		. substitute M monitors.focus.name \
+#				set_attr tags.focus.my_monitor M
 #
-hc keybind $MOD-Shift-t \
-	remove_attr tags.focus.my_monitor
+#hc keybind $MOD-Shift-t \
+#	remove_attr tags.focus.my_monitor
 
 ###---------------###
 ###---   EOF   ---###

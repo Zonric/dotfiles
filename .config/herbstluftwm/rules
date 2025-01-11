@@ -1,11 +1,8 @@
 #!/usr/bin/env sh
-hc() {
-    herbstclient "$@"
-}
-
-#-------#
-# Rules #
-#-------#
+###---------------###
+###---  Rules  ---###
+###--- ./rules ---###
+###---------------###
 hc unrule -F
 hc rule focus=on # normally focus new clients
 hc rule floatplacement=center
@@ -13,7 +10,6 @@ hc rule floatplacement=center
 lock_tag_to_monitor() {
 	hc chain , new_attr string tags.by-name."$1".my_monitor , set_attr tags.by-name."$1".my_monitor "$2"
 }
-#
 lock_tag_to_monitor 1 0
 lock_tag_to_monitor 2 0
 lock_tag_to_monitor 3 0
@@ -27,32 +23,33 @@ lock_tag_to_monitor 10 0
 
 hc foreach T tags.by-name. sprintf ATTR '%c.tiling.root.algorithm' T set_attr ATTR horizontal
 
-#---------------#
-# Layouts       #
-#---------------#
-# setlayout {of_tag} {layout}
+###-------------------###
+###---   Layouts   ---###
+###-------------------###
 setlayout() {
 	hc chain , use "$1" , set_layout "$2" , use_previous
 }
+# setlayout {of_tag} {layout}
 setlayout 8 max
+setlayout 9 max
 
-#---------------#
-# Floating Apps #
-#---------------#
+###-------------------------###
+###---   Floating Apps   ---###
+###-------------------------###
 hc rule class="dev" floating=on
 hc rule class="debug" floating=on
 hc rule class="Thunar" floating=on
 hc rule class="QjackCtl" floating=on
 hc rule instance="kvantummanager" floating=on
 hc rule instance="feh" class="feh" floating=on
-#hc rule instance="calibre-ebook-viewer" floating=on
-
+hc rule instance="calibre-ebook-viewer" floating=on
+hc rule class="Gimp" floating=on
 hc rule class="Lutris" floating=on
 hc rule class="battle.net.exe" floating=on
 
-#---------------#
-# Godot Rules   #
-#---------------#
+###-----------------------###
+###---   Godot Rules   ---###
+###-----------------------###
 hc rule instance="Godot_Engine" floating=on
 hc rule instance="Godot_ProjectList" floating=on
 hc rule instance="Godot_Editor" floating=off
@@ -92,9 +89,9 @@ hc rule instance="Godot_Editor" title~"Warning.*" floating=on
 
 hc rule instance="drkonqi" class="drkonqi" floating=on
 
-#--------------#
-# General Apps #
-#--------------#
+###------------------------###
+###---   General Apps   ---###
+###------------------------###
 hc rule class="obs" tag=7
 # Audio Apps
 hc rule class="Jack_mixer" tag="audio"
@@ -104,24 +101,29 @@ hc rule class="Spotify" tag=8
 # Communication Apps
 hc rule class="SchildiChat" tag=9
 
-#-------------#
-# Steam/Games #
-#-------------#
+###-----------------------###
+###---   Steam/Games   ---###
+###-----------------------###
 hc rule class="steam" tag=10
 # Black Desert Patcher
 hc rule instance="steam_app_582660" tag=10 floating=on floatplacement=center
+hc rule instance="steam_app_1151340" tag=10 fullscreen=on
 #hc rule instance="(Zonric) Wurm Unlimited " fullscreen=on
 hc rule instance="com.wurmonline.client.launcherfx.WurmMain" fullscreen=on
 
-#--------------#
-# Common Terms #
-#--------------#
+###------------------------###
+###---   Common Terms   ---###
+###------------------------###
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on floatplacement=center
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc set tree_style '╾│ ├└╼─┐'
 
-#--------#
-# Unlock #
-#--------#
+###------------------###
+###---   Unlock   ---###
+###------------------###
 hc unlock
+
+###---------------###
+###---   EOF   ---###
+###---------------###
 

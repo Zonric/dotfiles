@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # General alias...
 alias pacs="pacman -Ss" \
-	kiff="kitty +kitten diff" \
 	mkdir="mkdir -v" \
 	ls="ls --color=always --group-directories-first" \
 	grep="grep --color=auto" \
@@ -9,6 +8,8 @@ alias pacs="pacman -Ss" \
 	cdiff="cfg diff" \
 	pacman="pacman --color=auto" \
 	vim="nvim" \
-	vimcon="vim ~/.config/nvim/" \
+	nvimcon="nvim ~/.config/nvim/" \
+	vimcon="nvimcon" \
 	:q="exit" \
+	tree="tree --gitignore --dirsfirst -a"
 

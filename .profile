@@ -18,32 +18,23 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
-export ZDOTDIR=$HOME/.config/zsh
 export GOPATH=$HOME/.go
 
-export NVIMCONFIG=$HOME/.config/nvim/init.lua
-export QT_STYLE_OVERRIDE=kvantum
+export ZDOTDIR=$HOME/.config/zsh
+export NVIM_DIR="$HOME/.config/nvm"
+export NVIM_CONFIG=$HOME/.config/nvim/init.lua
 
 umask 002
 
 numlockx
 
-# Conditional $PATH adds:
-if [ -d $HOME/.local/bin ]; then
-	export PATH="$PATH:$(du $HOME/.local/bin | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
-fi
-if [ -d $HOME/.config/composer/vendor/bin ]; then
-	export PATH="$PATH:$HOME/.config/composer/vendor/bin"
-fi
-if [ -d $HOME/.dotnet/tools ]; then
-	export PATH="$PATH:$HOME/.dotnet/tools"
-fi
+[ -d $HOME/.local/bin ] && export PATH="$PATH:$(du $HOME/.local/bin | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+[ -d $HOME/.config/composer/vendor/bin ] && export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+[ -d $HOME/.dotnet/tools ] && export PATH="$PATH:$HOME/.dotnet/tools"
 
 [ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources
-[ -f "$XDG_CONFIG_HOME/alias" ] && source "$XDG_CONFIG_HOME/alias"
+[ -f $XDG_CONFIG_HOME/alias ] && source $XDG_CONFIG_HOME/alias
 
-#. "$HOME/.cargo/env"
+[ -s $NVM_DIR/nvm.sh ] && source $NVM_DIR/nvm.sh
+[ -s $NVM_DIR/bash_completion ] && source $NVM_DIR/bash_completion # This loads nvm bash_completion
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion

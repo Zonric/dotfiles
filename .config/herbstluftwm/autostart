@@ -6,15 +6,14 @@ hc() {
 }
 
 hc emit_hook reload
-xsetroot -solid '#003333'
+xsetroot -solid '#333333'
 
-source ~/.config/herbstluftwm/settings
 source ~/.config/herbstluftwm/keys
 source ~/.config/herbstluftwm/rules
 source ~/.config/herbstluftwm/theme
 #-- if themeOVERRIDE exists source it after theme
 OVERRIDE=~/.config/herbstluftwm/themeOVERRIDE
-[ -f $OVERRIDE ] && . $OVERRIDE
+[ -f $OVERRIDE ] && source $OVERRIDE
 
 hc detect_monitors
 for monitor in $(hc list_monitors | cut -d':' -f1); do
@@ -22,7 +21,7 @@ for monitor in $(hc list_monitors | cut -d':' -f1); do
 done
 
 hc focus_monitor 2
-hc use 9
+hc use 7
 hc focus_monitor 1
 hc use 4
 hc focus_monitor 0
@@ -31,22 +30,18 @@ hc use 1
 #-----------#
 # Autostart #
 #-----------#
+source "$HOME"/.fehbg
+xmodmap ~/.config/xmodmap & # Key remaps
 picom & # Compostior
 polybar_launcher & # Info panels
-source "$HOME"/.fehbg
-qpwgraph & # Pipewire Patchboard
 startsinks & # Audio Sinks
+qpwgraph & # Pipewire Patchboard
 steam & # Games
-schildichat-desktop &
-#sayonara & # Music player -- might need to replace, might be taking over XF86Audio buttons.
-unclutter --timeout 15 --ignore-scrolling & # hide idle mouse pointer
-xmodmap ~/.config/xmodmap & # Key remaps
-#spotify-launcher &
-#obs &
+xfce4-power-manager &
 
-#JACKMIXCHECK=$(pgrep -a "python3" | grep "/usr/bin/jack_mixer" | wc -l)
-#if [[ $JACKMIXCHECK == 0 ]]; then
-#	jack_mixer -c ~/.config/jack_mixer/master.xml &
-#	echo "System" > ~/.config/polybar/scripts/var
-#fi
+# NOTE: Avoiding duplicate processes if reloading configs
+# Check if not running via pgrap '-c for count' '-a full name to use with grep' && launch 
+[[ $(pgrep -c "unclutter") == 0 ]] && unclutter --timeout 15 --ignore-scrolling &
+[[ $(pgrep -a "python3" | grep "/usr/bin/jack_mixer" | wc -l) == 0 ]] && jack_mixer -c ~/.config/jack_mixer/master.xml &
+#[[ $(pgrep -c "schildichat") == 0 ]] && schildichat-desktop &
 
