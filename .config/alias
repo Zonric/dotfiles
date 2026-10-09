@@ -2,15 +2,15 @@
 # General alias...
 alias \
 	:q="exit" \
-	cfg="git --git-dir=/home/zonric/.dotfiles/ --work-tree=$HOME" \
-	cfglazy="lazygit --git-dir=/home/zonric/.dotfiles/ --work-tree=$HOME" \
+	cfg="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" \
+	cfglazy="lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" \
 	cdiff="cfg diff" \
 	grep="grep --color=auto" \
 	ls="eza -hmogX --icons --group-directories-first --time-style='+%b %d %H:%M'" \
 	lt="ls -lT --no-permissions" \
 	lg="lt --no-filesize --no-user --no-time --git --git-ignore" \
 	mkdir="mkdir -pv" \
-	nvimcfg="nvim ~/.config/nvim/" \
+	nvimcfg="nvim $HOME/.config/nvim/" \
 	pacman="pacman --color=auto" \
 	tree="eza --long --tree --group-directories-first" \
 	vi="nvim" \
