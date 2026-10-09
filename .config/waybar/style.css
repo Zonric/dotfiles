@@ -1,0 +1,213 @@
+/* colors.css is built via ~/.config/theme/build.lua */
+@import "colors.css";
+
+* {
+  font-family:
+    FiraCode Nerd Font Mono,
+    sans-serif;
+  font-size: 16px;
+}
+
+window#waybar {
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 3px solid rgba(0, 0, 0, 0);
+  color: @green;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+button,
+#clock,
+#custom-micstatus,
+#custom-weather,
+#custom-weather-temp,
+#custom-weather-cond,
+#custom-weather-aqi,
+#idle_inhibitor,
+#mode,
+#mpd,
+#network,
+#power-profiles-daemon,
+#privacy,
+#pulseaudio,
+#scratchpad,
+#tray,
+#wireplumber {
+  padding: 0 10px;
+  background-color: @bg;
+  color: @green;
+}
+
+button {
+  border: none;
+  border-radius: 0;
+  box-shadow: inset 0 -3px transparent;
+}
+button:hover {
+  background: inherit;
+  box-shadow: inset 0 -3px @fg;
+}
+
+#custom-micstatus.muted {
+  color: @error;
+}
+
+#workspaces {
+  font-size: 20px;
+  border-radius: 0 55px 55px 0;
+}
+#workspaces button {
+  padding: 0 10px;
+  box-shadow: inset 0 -3px @muted;
+}
+#workspaces button:hover {
+  background: @purple;
+  color: @bg;
+  box-shadow: inset 0 -3px @cyan;
+}
+#workspaces button.focused,
+#workspaces button.active {
+  background-color: @purple;
+  color: #000000;
+  box-shadow: inset 0 -3px @focus;
+}
+#workspaces button.urgent {
+  background-color: @error;
+}
+
+#mode {
+  background-color: @muted;
+  box-shadow: inset 0 -3px @fg;
+}
+
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#network.disconnected {
+  color: @error;
+}
+
+#pulseaudio.muted {
+  color: @error;
+}
+
+#wireplumber.muted {
+  background-color: @error;
+}
+
+#idle_inhibitor {
+  font-size: 1.5em;
+  border-radius: 55px 0 0 55px;
+}
+#idle_inhibitor.activated {
+  background-color: @green;
+  color: @bg;
+}
+
+#power-profiles-daemon {
+  font-size: 1.5em;
+}
+#power-profiles-daemon.performance {
+  color: @warn;
+}
+#power-profiles-daemon.power-saver {
+  color: @blue;
+}
+
+#privacy {
+  padding: 0;
+}
+#privacy-item {
+  padding: 0 5px;
+  color: @fg;
+}
+#privacy-item.screenshare {
+  color: @warn;
+}
+#privacy-item.audio-in {
+  color: @green;
+}
+#privacy-item.audio-out {
+  color: @blue;
+}
+
+#tray {
+  color: @fg;
+}
+
+/* ==========================================================================
+   Weather Module & Group
+   ========================================================================== */
+
+#group-weather {
+  background-color: @bg;
+  padding: 0;
+}
+
+#custom-weather-temp,
+#custom-weather-cond,
+#custom-weather-aqi {
+  background-color: @bg;
+  padding: 0 4px;
+}
+
+/* Temperature Tiers */
+#custom-weather-temp.temp-freezing {
+  color: @cyan;
+}
+#custom-weather-temp.temp-cold {
+  color: @blue;
+}
+#custom-weather-temp.temp-mild {
+  color: @green;
+}
+#custom-weather-temp.temp-warm {
+  color: @warn;
+}
+#custom-weather-temp.temp-hot {
+  color: @error;
+}
+
+/* Condition Types */
+#custom-weather-cond.cond-clear {
+  color: @warn;
+}
+#custom-weather-cond.cond-clouds {
+  color: @muted;
+}
+#custom-weather-cond.cond-rain {
+  color: @blue;
+}
+#custom-weather-cond.cond-drizzle {
+  color: @info;
+}
+#custom-weather-cond.cond-thunderstorm {
+  color: @purple;
+}
+#custom-weather-cond.cond-snow {
+  color: @fg;
+}
+#custom-weather-cond.cond-atmosphere {
+  color: @hint;
+}
+
+/* Air Quality Tiers */
+#custom-weather-aqi.aqi-good {
+  color: @green;
+}
+#custom-weather-aqi.aqi-fair {
+  color: @cyan;
+}
+#custom-weather-aqi.aqi-moderate {
+  color: @warn;
+}
+#custom-weather-aqi.aqi-poor {
+  color: @orange;
+}
+#custom-weather-aqi.aqi-very-poor {
+  color: @error;
+}

@@ -1,0 +1,302 @@
+#!/usr/bin/env python3
+"""
+ACP (Agent Client Protocol) Bridge for Google Antigravity CLI (agy).
+Enables seamless JSON-RPC 2.0 communication between CodeCompanion.nvim and agy.
+"""
+
+import sys
+import json
+import uuid
+import os
+import subprocess
+import signal
+import select
+import atexit
+
+def log_debug(msg):
+    log_path = os.environ.get("AGY_ACP_LOG")
+    if log_path:
+        with open(log_path, "a") as f:
+            f.write(f"{msg}\n")
+
+def set_pdeathsig():
+    """Ensure child process terminates when parent process dies (Linux-specific)."""
+    try:
+        import ctypes
+        import ctypes.util
+        libc_name = ctypes.util.find_library("c")
+        if libc_name:
+            libc = ctypes.CDLL(libc_name)
+            PR_SET_PDEATHSIG = 1
+            libc.prctl(PR_SET_PDEATHSIG, signal.SIGTERM)
+    except Exception:
+        pass
+
+class AgyAcpBridge:
+    def __init__(self):
+        self.proc = None
+        self.session_id = None
+        self.cwd = os.getcwd()
+
+    def stop_agy(self):
+        if self.proc is not None:
+            try:
+                if self.proc.poll() is None:
+                    self.proc.terminate()
+                    try:
+                        self.proc.wait(timeout=1.0)
+                    except subprocess.TimeoutExpired:
+                        self.proc.kill()
+                        self.proc.wait(timeout=1.0)
+            except Exception as e:
+                log_debug(f"Error stopping agy: {e}")
+            finally:
+                self.proc = None
+
+    def start_agy(self, cwd=None):
+        if cwd and os.path.isdir(cwd):
+            self.cwd = cwd
+        self.stop_agy()
+        self.proc = subprocess.Popen(
+            ["agy", "--print", "--input-format", "stream-json", "--output-format", "stream-json"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            bufsize=1,
+            cwd=self.cwd,
+            preexec_fn=set_pdeathsig
+        )
+
+    def send_rpc(self, data):
+        line = json.dumps(data)
+        log_debug(f">>> {line}")
+        sys.stdout.write(line + "\n")
+        sys.stdout.flush()
+
+    def handle_initialize(self, req_id, params):
+        res = {
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "result": {
+                "protocolVersion": 1,
+                "agentCapabilities": {
+                    "loadSession": False,
+                    "promptCapabilities": {
+                        "image": False,
+                        "audio": False,
+                        "embeddedContext": False
+                    }
+                },
+                "agentInfo": {
+                    "name": "antigravity",
+                    "title": "Antigravity CLI",
+                    "version": "1.2.10"
+                }
+            }
+        }
+        self.send_rpc(res)
+
+    def handle_authenticate(self, req_id, params):
+        self.send_rpc({"jsonrpc": "2.0", "id": req_id, "result": {}})
+
+    def handle_session_new(self, req_id, params):
+        self.session_id = str(uuid.uuid4())
+        cwd = params.get("cwd") if isinstance(params, dict) else None
+        self.start_agy(cwd)
+        self.send_rpc({"jsonrpc": "2.0", "id": req_id, "result": {"sessionId": self.session_id}})
+
+    def handle_session_prompt(self, req_id, params):
+        if not self.proc or self.proc.poll() is not None:
+            self.start_agy()
+
+        prompt_blocks = params.get("prompt", []) if isinstance(params, dict) else []
+        text_parts = []
+        for block in prompt_blocks:
+            if isinstance(block, dict):
+                if block.get("type") == "text" and "text" in block:
+                    text_parts.append(block["text"])
+                elif "content" in block:
+                    text_parts.append(str(block["content"]))
+            elif isinstance(block, str):
+                text_parts.append(block)
+        
+        prompt_text = "\n".join(text_parts) if text_parts else ""
+        if not prompt_text:
+            self.send_rpc({"jsonrpc": "2.0", "id": req_id, "result": {"stopReason": "end_turn"}})
+            return
+
+        user_event = {
+            "event": "user",
+            "message": {
+                "content": prompt_text
+            }
+        }
+        log_debug(f"TO AGY: {json.dumps(user_event)}")
+        try:
+            self.proc.stdin.write(json.dumps(user_event) + "\n")
+            self.proc.stdin.flush()
+        except Exception as e:
+            log_debug(f"Failed to write to agy stdin: {e}")
+            self.send_rpc({
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "error": {"code": -32603, "message": f"Failed to communicate with agy: {e}"}
+            })
+            return
+
+        # Poll stdout and stdin concurrently to handle cancel requests and prevent deadlocks
+        got_result = False
+        while True:
+            try:
+                rlist, _, _ = select.select([sys.stdin, self.proc.stdout], [], [], 1.0)
+            except (ValueError, select.error):
+                break
+
+            if not rlist:
+                if self.proc.poll() is not None:
+                    break
+                continue
+
+            # Check if CodeCompanion sent a cancellation or closed stdin
+            if sys.stdin in rlist:
+                line = sys.stdin.readline()
+                if not line:
+                    # Client closed stdin
+                    self.stop_agy()
+                    return
+                line = line.strip()
+                if line:
+                    log_debug(f"<<< [during prompt] {line}")
+                    try:
+                        req = json.loads(line)
+                        if req.get("method") == "session/cancel":
+                            self.stop_agy()
+                            cancel_id = req.get("id")
+                            if cancel_id is not None:
+                                self.send_rpc({"jsonrpc": "2.0", "id": cancel_id, "result": {}})
+                            self.send_rpc({
+                                "jsonrpc": "2.0",
+                                "id": req_id,
+                                "result": {"stopReason": "cancelled"}
+                            })
+                            return
+                    except Exception as e:
+                        log_debug(f"JSON parse error on stdin during prompt: {e}")
+
+            # Check if agy emitted an event
+            if self.proc and self.proc.stdout in rlist:
+                line = self.proc.stdout.readline()
+                if not line:
+                    break
+                log_debug(f"FROM AGY: {line.strip()}")
+                try:
+                    data = json.loads(line)
+                except Exception:
+                    continue
+
+                event = data.get("event")
+                if event == "step_update":
+                    su = data.get("step_update", {})
+                    delta = su.get("text_delta")
+                    if delta:
+                        chunk_notification = {
+                            "jsonrpc": "2.0",
+                            "method": "session/update",
+                            "params": {
+                                "sessionId": self.session_id,
+                                "update": {
+                                    "sessionUpdate": "agent_message_chunk",
+                                    "content": {
+                                        "type": "text",
+                                        "text": delta
+                                    }
+                                }
+                            }
+                        }
+                        self.send_rpc(chunk_notification)
+                    elif su.get("step_type") == "tool" and su.get("state") == "ACTIVE":
+                        tool_name = su.get("tool_name", "tool")
+                        thought_notification = {
+                            "jsonrpc": "2.0",
+                            "method": "session/update",
+                            "params": {
+                                "sessionId": self.session_id,
+                                "update": {
+                                    "sessionUpdate": "agent_thought_chunk",
+                                    "content": {
+                                        "type": "text",
+                                        "text": f" *[Running {tool_name}...]*\n"
+                                    }
+                                }
+                            }
+                        }
+                        self.send_rpc(thought_notification)
+
+                elif event == "result":
+                    got_result = True
+                    self.send_rpc({
+                        "jsonrpc": "2.0",
+                        "id": req_id,
+                        "result": {
+                            "stopReason": "end_turn"
+                        }
+                    })
+                    break
+
+        if not got_result:
+            exit_code = self.proc.poll() if self.proc else None
+            log_debug(f"agy ended without result event (exit code: {exit_code})")
+            self.send_rpc({
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "result": {
+                    "stopReason": "end_turn"
+                }
+            })
+
+    def run(self):
+        for line in sys.stdin:
+            line = line.strip()
+            if not line:
+                continue
+            log_debug(f"<<< {line}")
+            try:
+                req = json.loads(line)
+            except Exception as e:
+                log_debug(f"JSON parse error: {e}")
+                continue
+
+            req_id = req.get("id")
+            method = req.get("method")
+            params = req.get("params", {})
+
+            if method == "initialize":
+                self.handle_initialize(req_id, params)
+            elif method == "authenticate":
+                self.handle_authenticate(req_id, params)
+            elif method == "session/new":
+                self.handle_session_new(req_id, params)
+            elif method == "session/prompt":
+                self.handle_session_prompt(req_id, params)
+            elif method == "session/cancel":
+                self.stop_agy()
+                if req_id is not None:
+                    self.send_rpc({"jsonrpc": "2.0", "id": req_id, "result": {}})
+            else:
+                if req_id is not None:
+                    self.send_rpc({"jsonrpc": "2.0", "id": req_id, "result": {}})
+
+        self.stop_agy()
+
+if __name__ == "__main__":
+    bridge = AgyAcpBridge()
+    atexit.register(bridge.stop_agy)
+
+    def sig_handler(sig, frame):
+        bridge.stop_agy()
+        sys.exit(0)
+
+    signal.signal(signal.SIGINT, sig_handler)
+    signal.signal(signal.SIGTERM, sig_handler)
+    bridge.run()

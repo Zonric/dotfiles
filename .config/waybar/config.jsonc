@@ -1,0 +1,44 @@
+[
+	{
+		"output": "DP-1",
+		"include": [
+			"$HOME/.config/waybar/common.jsonc"
+		],
+		"mango/workspaces": {
+			"format": "{icon}",
+			"format-icons": {
+				"1": "",
+				"2": ""
+			}
+		}
+	},
+	{
+		"output": "DP-2",
+		"include": [
+			"$HOME/.config/waybar/common.jsonc"
+		],
+		"mango/workspaces": {
+			"format": "{icon}",
+			"format-icons": {
+				"1": "",
+				"2": "",
+				"3": "",
+				"9": ""
+			}
+		}
+	},
+	{
+		"output": "DP-3",
+		"include": [
+			"$HOME/.config/waybar/common.jsonc"
+		],
+		"mango/workspaces": {
+			"format": "{icon}",
+			"format-icons": {
+				"1": "",
+				"2": "󰇮",
+				"9": "󱡫"
+			}
+		}
+	}
+]

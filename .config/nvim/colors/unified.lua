@@ -1,0 +1,1 @@
+/home/zonric/dev/lua/theme/out/nvim.lua

@@ -1,0 +1,1 @@
+/home/zonric/dev/lua/theme/out/palette.lua

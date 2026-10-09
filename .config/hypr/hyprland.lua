@@ -1,0 +1,8 @@
+require("config.setup")
+require("config.decor")
+require("config.keymap")
+require("config.rules.monitors")
+require("config.rules.layouts")
+require("config.rules.workspaces")
+require("config.rules.windows")
+require("config.autostart")

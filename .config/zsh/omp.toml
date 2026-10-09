@@ -1,0 +1,127 @@
+version = 4
+
+[palette]
+	red = "#ff0000"
+	green = "#00ff00"
+	blue = "#0000ff"
+	white = "#ffffff"
+	black = "#161616"
+	orange = "#ff8800"
+	yellow = "#ffee80"
+	git_clean = "#22aa99"
+	git_dirty = "#ee5599"
+	git_ahead = "#b3ee99"
+	git_behind = "#eeaa70"
+	git_warn = "#ff6600"
+	git_info = "#006633"
+
+[upgrade]
+	source = "cdn"
+	interval = "168h"
+	auto = false
+	notice = false
+
+[transient_prompt]
+	background = "transparent"
+	foreground = "p:orange"
+	template = "{{ if .Env.VIRTUAL_ENV }}<#ffd43b> </>{{ end }} "
+
+[[blocks]]
+	type = "prompt"
+	alignment = "left"
+	newline = true
+
+	[[blocks.segments]]
+		type = "os"
+		style = "plain"
+		template = "{{ if .WSL }}󰹙 {{ end }}{{.Icon}}:"
+		foreground = "p:orange"
+
+		[blocks.segments.options]
+			macos = "mac"
+
+	[[blocks.segments]]
+		type = "path"
+		style = "plain"
+		foreground = "p:green"
+
+		[blocks.segments.options]
+			folder_separator_icon = "/"
+			style = "full"
+
+	[[blocks.segments]]
+		type = "git"
+		style = "plain"
+		foreground = "p:git_clean"
+		foreground_templates = [
+			"{{ if or (.Working.Changed) (.Staging.Changed) }}p:git_dirty{{ end }}",
+		]
+		template = "{{ .HEAD }}"
+
+		[blocks.segments.options]
+			fetch_status = true
+			branch_icon = ""
+
+	[[blocks.segments]]
+		type = "git"
+		style = "plain"
+		foreground = "p:git_clean"
+		foreground_templates = [
+			"{{if and .Ahead .Behind}}p:git_warn{{end}}",
+			"{{if and .Ahead (not .Behind)}}p:git_ahead{{end}}",
+			"{{if and .Behind (not .Ahead)}}p:git_behind{{end}}"
+		]
+		template = "#{{ .ShortHash }}{{if and (gt .Ahead 0) (gt .Behind 0)}} {{else}}{{if gt .Ahead 0}} {{ end }}{{if gt .Behind 0}} {{end}}{{end}}"
+
+		[blocks.segments.options]
+			fetch_status = true
+
+	[[blocks.segments]]
+		type = "git"
+		style = "plain"
+		foreground = "p:git_info"
+		template = "{{if gt .StashCount 0}} :{{ .StashCount }}{{end}}"
+
+		[blocks.segments.options]
+			fetch_status = true
+
+[[blocks]]
+	type = "prompt"
+	alignment = "left"
+	newline = true
+
+	[[blocks.segments]]
+		type = "text"
+		style = "plain"
+		template = "{{ if gt .Jobs 0 }}<p:yellow>{{ .Jobs }} </>{{end}}"
+
+	[[blocks.segments]]
+		type = "python"
+		style = "plain"
+		foreground = "#ffd43b"
+		background = "transparent"
+		template = "{{ if .Venv }} {{ .Venv }}{{ end }} "
+
+	[[blocks.segments]]
+		type = "text"
+		style = "plain"
+		template = "{{ if .Root }}<p:red,transparent> </>{{end}}{{ if gt .Code 0}}<p:red,transparent>{{else}}<p:green,transparent>{{end}} </>"
+		foreground = "#F00A00"
+
+[[blocks]]
+	type = "rprompt"
+
+	[[blocks.segments]]
+		type = "executiontime"
+		style = "plain"
+		template = "{{ .FormattedMs }}  "
+		foreground = "p:orange"
+
+		[blocks.segments.options]
+			style = "galvestonms"
+
+	[[blocks.segments]]
+		template = "{{ round .PhysicalPercentUsed .Precision }}% "
+		foreground = "p:orange"
+		type = "sysinfo"
+		style = "diamond"

@@ -1,0 +1,41 @@
+return {
+	{
+		"romus204/tree-sitter-manager.nvim",
+		enabled = true,
+		event = { "BufReadPost", "BufNewFile" },
+		opts = {
+			ensure_installed = {
+				"c",
+				"cpp",
+				"go",
+				"gomod",
+				"gosum",
+				"gowork",
+				"java",
+				"javascript",
+				"lua",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"rust",
+				"templ",
+				"tsx",
+				"typescript",
+				"zig",
+			},
+			auto_install = true,
+			noauto_install = {},
+			nohighlight = {},
+		},
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		enabled = true,
+		event = { "BufReadPost", "BufNewFile" },
+		opts = {
+			max_lines = 3,
+			trim_scope = "outer",
+			mode = "cursor",
+		},
+	},
+}
