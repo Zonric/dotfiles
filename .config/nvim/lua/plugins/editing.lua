@@ -1,5 +1,12 @@
 return {
 	{
+		"jake-stewart/multicursor.nvim",
+		branch = "1.0",
+		enabled = true,
+		lazy = true,
+		opts = {},
+	},
+	{
 		"windwp/nvim-autopairs",
 		enabled = true,
 		lazy = true,
@@ -11,9 +18,7 @@ return {
 
 			npairs.setup(opts)
 			npairs.add_rules({
-				Rule(">[%w%s]*$", "^%s*</", { "templ" })
-					:only_cr()
-					:use_regex(true),
+				Rule(">[%w%s]*$", "^%s*</", { "templ" }):only_cr():use_regex(true),
 			})
 		end,
 	},

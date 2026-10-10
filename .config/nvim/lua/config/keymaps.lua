@@ -6,6 +6,16 @@ local function wk_add_group(prefix, name)
 	end
 end
 
+local function with_multicursor(fn)
+	return function(...)
+		local ok, mc = pcall(require, "multicursor-nvim")
+		if not ok then
+			return
+		end
+		return fn(mc, ...)
+	end
+end
+
 --- LEADERLESS KEYS ---
 --- Dap Keys
 if not vim.g.is_server then
@@ -82,18 +92,75 @@ vim.keymap.set("n", "<C-/>", function()
 end, { desc = "Open Terminal." })
 vim.keymap.set("t", "<C-/>", "<C-\\><C-n><C-w>k", { desc = "Exit Terminal." })
 vim.keymap.set("n", "<C-BS>", "<CMD>noh<CR>", { desc = "Clear Search" })
-
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Navigate to Left Window." })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Navigate Down a Window." })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Navigate Up a Window." })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Navigate to Right Window." })
-
 vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Navigate to Left Window." })
 vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Navigate Down a Window." })
 vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Navigate Up a Window." })
 vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Navigate to Right Window." })
-
 vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "Display signature helper." })
+vim.keymap.set(
+	{ "n", "x" },
+	"<C-n>",
+	with_multicursor(function(mc)
+		mc.matchAddCursor(1)
+	end),
+	{ desc = "Multicursor: Add next match" }
+)
+vim.keymap.set(
+	{ "n", "x" },
+	"<C-s>",
+	with_multicursor(function(mc)
+		mc.matchSkipCursor(1)
+	end),
+	{ desc = "Multicursor: Skip next match" }
+)
+vim.keymap.set(
+	{ "n", "x" },
+	"<C-p>",
+	with_multicursor(function(mc)
+		mc.matchAddCursor(-1)
+	end),
+	{ desc = "Multicursor: Add previous match" }
+)
+vim.keymap.set(
+	{ "n", "x" },
+	"<Up>",
+	with_multicursor(function(mc)
+		mc.lineAddCursor(-1)
+	end),
+	{ desc = "Multicursor: Add cursor above" }
+)
+
+vim.keymap.set(
+	{ "n", "x" },
+	"<Down>",
+	with_multicursor(function(mc)
+		mc.lineAddCursor(1)
+	end),
+	{ desc = "Multicursor: Add cursor below" }
+)
+vim.keymap.set(
+	{ "n", "x" },
+	"<C-a>",
+	with_multicursor(function(mc)
+		mc.matchAllAddCursors()
+	end),
+	{ desc = "Multicursor: Add all matches" }
+)
+
+vim.keymap.set("n", "<Esc>", function()
+	local ok, mc = pcall(require, "multicursor-nvim")
+	if ok and mc.hasCursors() then
+		mc.clearCursors()
+	elseif ok and not mc.cursorsEnabled() then
+		mc.enableCursors()
+	else
+		vim.cmd("nohlsearch")
+	end
+end, { desc = "Multicursor: Clear cursors / hlsearch" })
 
 -- LuaSnip Jumpable
 vim.keymap.set({ "i", "s" }, "<C-h>", function()
