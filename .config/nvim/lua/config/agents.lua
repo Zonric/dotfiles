@@ -2,15 +2,13 @@ local M = {}
 
 local acp_script = vim.fn.stdpath("config") .. "/scripts/agy-acp"
 
--- Clean and speak text asynchronously via tts-say
+-- Speak text asynchronously via tts-say
 function M.speak(text)
 	if not text or text == "" then
 		return
 	end
 
-	-- Strip markdown code blocks, backticks, and headers
-	local clean = text:gsub("```.-```", ""):gsub("`.-`", ""):gsub("#+%s*", "")
-	clean = vim.trim(clean)
+	local clean = vim.trim(text)
 	if clean == "" then
 		return
 	end

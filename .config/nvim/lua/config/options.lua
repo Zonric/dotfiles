@@ -11,6 +11,9 @@ g.php_indent_disable = 1
 g.is_server = vim.env.NVIM_SERVER == "1"
 	or vim.fn.filereadable(vim.fn.stdpath("config") .. "/.server") == 1
 
+-- Zettelkasten notebook directory fallback
+vim.env.ZK_NOTEBOOK_DIR = vim.env.ZK_NOTEBOOK_DIR or vim.fn.expand("~/notes")
+
 --- Dynamic Settings:
 local opt = vim.opt
 opt.encoding = "UTF-8"

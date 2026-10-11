@@ -17,6 +17,12 @@ return {
 			local Rule = require("nvim-autopairs.rule")
 
 			npairs.setup(opts)
+			npairs.get_rule("["):with_pair(function(opts_rule)
+				if vim.bo.filetype == "markdown" then
+					return false
+				end
+				return true
+			end)
 			npairs.add_rules({
 				Rule(">[%w%s]*$", "^%s*</", { "templ" }):only_cr():use_regex(true),
 			})

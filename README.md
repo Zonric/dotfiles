@@ -72,6 +72,10 @@ cfg checkout
   - `~/.config/zsh/` (`.zshrc`, Starship, Oh My Posh, Spaceship configs)
   - `~/.config/alias`
 - **Editor**: Neovim (`~/.config/nvim`)
+  - Modular auto-loading keymap engine with lazy/call safety wrappers
+  - Modern Lua-native multi-cursor support (`multicursor.nvim`)
+  - Project-level session management with dirty buffer shadow restoration
+  - Comprehensive documentation in [.config/nvim/README.md](.config/nvim/README.md) and [.config/nvim/docs/keymaps-cheatsheet.md](.config/nvim/docs/keymaps-cheatsheet.md)
 - **Window Manager & Desktop**: Hyprland (`~/.config/hypr`) & MangoWM (`~/.config/mango`)
 - **Bar & Widgets**: Waybar (`~/.config/waybar`)
 - **Terminal**: Ghostty (`~/.config/ghostty`)
