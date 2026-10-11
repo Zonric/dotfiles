@@ -66,6 +66,26 @@ hl.bind(MOD .. " + f", function()
 	hl.dispatch(hl.dsp.window.fullscreen({ mode = "fullscreen", window = "activewindow" }))
 end)
 
+local transparent = true
+hl.bind("F3", function()
+	transparent = not transparent
+	if transparent then
+		hl.config({
+			decoration = {
+				active_opacity = 0.95,
+				inactive_opacity = 0.85,
+			},
+		})
+	else
+		hl.config({
+			decoration = {
+				active_opacity = 1.00,
+				inactive_opacity = 1.00,
+			},
+		})
+	end
+end)
+
 hl.bind(MOD .. " + e", hl.dsp.exec_cmd(app.fileMan))
 hl.bind(MOD .. " + g", hl.dsp.event("custom.jump"))
 hl.bind(MOD .. " + h", hl.dsp.focus({ direction = "left" }))
